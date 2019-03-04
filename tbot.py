@@ -37,7 +37,7 @@ class BotHandler:
 
     def send_photo(self, chat, photo):
         params = {'chat_id': chat, 'photo': photo}
-        method = 'sendMessage'
+        method = 'sendPhoto'
         response = requests.post(self.api_url + method, data=params)
         return response
 
@@ -65,16 +65,13 @@ def main():
             last_update_id = last_update['update_id']
             last_chat_text = last_update['message']['text']
             last_chat_id = last_update['message']['chat']['id']
-            last_chat_photo = last_update['message']['chat']['photo']
             last_chat_name = last_update['message']['chat']['first_name']
             if last_chat_text.lower() in hi_text:
                 greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
             if last_chat_text.lower() in time_text:
                 greet_bot.send_message(last_chat_id,
                                     "Сегодня {today}, время {hour}:{minute}".format(today=time["today"], hour=time["hour"], minute=time["minute"]))
-            if last_chat_text.lower() in  photo_text:
-                greet_bot.send_photo(last_chat_id, last_chat_photo)
-                
+
             new_offset = last_update_id+1
 
 if __name__ == '__main__':
