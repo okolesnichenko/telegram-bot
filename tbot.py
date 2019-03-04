@@ -10,8 +10,8 @@ class BotHandler:
     def get_updates_json(self, offset=None, timeout=30):
         method = 'getUpdates'
         params = {'timeout': timeout, 'offset': offset}
-        response = requests.get(self.api_url+ method, data=params)
-        result_resp = response.json()['result']
+        response = requests.get(self.api_url + method, data=params)
+        result_resp = response.json()["result"]
         return result_resp
 
     def get_last_update(self):
@@ -28,7 +28,7 @@ class BotHandler:
         chat_id = update['message']['chat']['id']
         return chat_id
 
-    def send_mess(chat, text):
+    def send_mess(self, chat, text):
         params = {'chat_id': chat, 'text':text}
         method = 'sendMessage'
         response = requests.post(url + method, data=params)
