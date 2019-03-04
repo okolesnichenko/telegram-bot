@@ -1,6 +1,7 @@
 import requests
 import datetime
 from time import sleep
+import os
 
 class BotHandler:
     def __init__(self, token):
@@ -34,7 +35,7 @@ class BotHandler:
         response = requests.post(self.api_url + method, data=params)
         return  response
 
-greet_bot = BotHandler(TOKEN)
+greet_bot = BotHandler(os.getenv("TOKEN"))
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
 now = datetime.datetime.now()
