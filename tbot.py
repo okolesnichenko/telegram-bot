@@ -38,18 +38,22 @@ class BotHandler:
 greet_bot = BotHandler(os.getenv("TOKEN"))
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
-now = datetime.datetime.now()
+
+
+def get_time():
+    now = datetime.datetime.now()
+    today = now.day
+    hour = now.hour + 3
+    minute = now.minute
+    data = {"today":today, "hour":hour, "minute":minute}
+    return data
 
 def main():
     new_offset = None
-    today = now.day
-    hour = now.hour+3
-    minute = now.minute
-
     while True:
         greet_bot.get_updates_json(new_offset)
-
         last_update = greet_bot.get_last_update()
+        time = get_time()
         if(last_update):
             last_update_id = last_update['update_id']
             last_chat_text = last_update['message']['text']
@@ -59,7 +63,7 @@ def main():
                 greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
             if last_chat_text.lower() in time_text:
                 greet_bot.send_message(last_chat_id,
-                                    "Сегодня {today}, время {hour}:{minute}".format(today=today, hour=hour, minute=minute))
+                                    "Сегодня {today}, время {hour}:{minute}".format(today=time.today, hour=time.hour, minute=time.minute))
             new_offset = last_update_id+1
 
 if __name__ == '__main__':
