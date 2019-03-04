@@ -21,7 +21,7 @@ class BotHandler:
         if length_res>0:
             last_update = result[-1]
         else:
-            last_update = result[length_res]
+            last_update = ''
         return last_update
 
     def get_chat_id(update):
