@@ -34,8 +34,7 @@ class BotHandler:
         response = requests.post(self.api_url + method, data=params)
         return  response
 
-token = "712151390:AAFM2bGZICQhLFtn0P75WTqlO4WXZk5PCTw"
-greet_bot = BotHandler(token)
+greet_bot = BotHandler(TOKEN)
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
 now = datetime.datetime.now()
