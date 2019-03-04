@@ -17,12 +17,12 @@ class BotHandler:
     def get_last_update(self):
         result = self.get_updates_json()
         length_res = len(result)
-
+        print(length_res)
         if length_res>0:
             last_update = result[-1]
         else:
             last_update = result[length_res]
-        return  last_update
+        return last_update
 
     def get_chat_id(update):
         chat_id = update['message']['chat']['id']
@@ -43,7 +43,8 @@ now = datetime.datetime.now()
 def main():
     new_offset = None
     today = now.day
-    hour = now.hour
+    hour = now.hour+3
+    minute = now.minute
 
     while True:
         greet_bot.get_updates_json(new_offset)
@@ -57,7 +58,8 @@ def main():
         if last_chat_text.lower() in hi_text:
             greet_bot.send_mess(last_chat_id, "Привет, друг {}".format(last_chat_name))
         if last_chat_text.lower() in time_text:
-            greet_bot.send_mess(last_chat_id, "Сегодня {today}, время {hour}".format(today=today, hour=hour))
+            greet_bot.send_mess(last_chat_id,
+                                "Сегодня {today}, время {hour}:{minute}".format(today=today, hour=hour, minute=minute))
         new_offset = last_update_id+1
 
 if __name__ == '__main__':
