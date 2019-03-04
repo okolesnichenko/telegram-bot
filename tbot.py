@@ -63,7 +63,7 @@ def main():
                 greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
             if last_chat_text.lower() in time_text:
                 greet_bot.send_message(last_chat_id,
-                                    "Сегодня {today}, время {hour}:{minute}".format(today=time.today, hour=time.hour, minute=time.minute))
+                                    "Сегодня {today}, время {hour}:{minute}".format(today=time["today"], hour=time["hour"], minute=time["minute"]))
             new_offset = last_update_id+1
 
 if __name__ == '__main__':
