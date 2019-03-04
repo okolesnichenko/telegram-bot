@@ -31,7 +31,7 @@ class BotHandler:
     def send_mess(self, chat, text):
         params = {'chat_id': chat, 'text':text}
         method = 'sendMessage'
-        response = requests.post(url + method, data=params)
+        response = requests.post(self.api_url + method, data=params)
         return  response
 
 token = "712151390:AAFM2bGZICQhLFtn0P75WTqlO4WXZk5PCTw"
