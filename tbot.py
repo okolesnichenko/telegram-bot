@@ -5,7 +5,7 @@ from time import sleep
 class BotHandler:
     def __init__(self, token):
         self.token = token
-        self.api_url = "https://api.telegram.org/bot{}".format(token)
+        self.api_url = "https://api.telegram.org/bot{}/".format(token)
 
     def get_updates_json(self, offset=None, timeout=30):
         method = 'getUpdates'
