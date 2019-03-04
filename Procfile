@@ -1,1 +1,1 @@
-web: python tbot.py -p $PORT 
+bot: python tbot.py -p $PORT 
