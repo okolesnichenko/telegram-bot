@@ -89,6 +89,7 @@ def main():
             if(last_update.get('photo')):
                 last_photo_id = last_update['photo']['file_id']
                 photoIdList.append(last_photo_id)
+                print(photoIdList)
             new_offset = last_update_id + 1
 
 if __name__ == '__main__':
