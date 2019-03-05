@@ -86,8 +86,8 @@ def main():
                 if last_chat_text.lower() in photo_text:
                     if(photoIdList):
                         greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
-            if(last_update.get('photo')):
-                last_photo_id = last_update['photo'][0]['file_id']
+            if(last_update['message'].get('photo')):
+                last_photo_id = last_update['message']['photo'][0]['file_id']
                 photoIdList.append(last_photo_id)
                 print(photoIdList)
             new_offset = last_update_id + 1
