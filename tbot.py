@@ -35,7 +35,7 @@ class BotHandler:
         params = {'chat_id': chat, 'text':text}
         method = 'sendMessage'
         response = requests.post(self.api_url + method, data=params)
-        return  response
+        return response
 
     def send_photo(self, chat, file_id):
         params = {'chat_id':chat, 'photo': file_id}
@@ -58,7 +58,7 @@ def get_time():
     today = now.day
     hour = now.hour + 3
     minute = now.minute
-    data = {"today":today, "hour":hour, "minute":minute}
+    data = {"today": today, "hour": hour, "minute": minute}
     return data
 
 def main():
@@ -79,14 +79,14 @@ def main():
                     greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
                 # Время
                 if last_chat_text.lower() in time_text:
-                    greet_bot.send_message(last_chat_id,
-                                        "Сегодня {today}, время {hour}:{minute}"
+                    greet_bot.send_message(last_chat_id,"Сегодня {today}, время {hour}:{minute}"
                                            .format(today=time['today'], hour=time['hour'], minute=time['minute']))
                 # Фото
                 if last_chat_text.lower() in photo_text:
+                    print(photoIdList)
                     if(photoIdList):
                         greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
-            if(last_update['message'].get('photo')):
+            if (last_update['message'].get('photo')):
                 last_photo_id = last_update['message']['photo'][0]['file_id']
                 photoIdList.append(last_photo_id)
                 print(photoIdList)
