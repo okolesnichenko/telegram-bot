@@ -87,6 +87,7 @@ def main():
                     if(photoIdList):
                         greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
             if(last_update.get('photo')):
+                last_update_id = last_update['update_id']
                 last_photo_id = last_update['photo']['file_id']
                 photoIdList.append(last_photo_id)
                 print(photoIdList)
