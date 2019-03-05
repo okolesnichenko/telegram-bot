@@ -51,6 +51,7 @@ hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
 photo_text = ("фото", "фотография", "photo", "next")
 now = datetime.datetime.now()
+photoIdList = []
 
 
 def get_time():
@@ -65,7 +66,6 @@ def main():
     new_offset = None
     while True:
         greet_bot.get_updates_json(new_offset)
-        photoIdList = []
         last_update = greet_bot.get_last_update()
         time = get_time()
         if(last_update):
