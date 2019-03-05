@@ -1,7 +1,9 @@
 import requests
 import datetime
-from time import sleep
+import random
 import os
+from time import sleep
+
 
 class BotHandler:
     def __init__(self, token):
@@ -35,9 +37,16 @@ class BotHandler:
         response = requests.post(self.api_url + method, data=params)
         return  response
 
+    def send_photo(self, chat, file_id):
+        params = {'chat_id':chat, 'photo': file_id}
+        method = 'sendPhoto'
+        response = requests.post(self.api_url + method, data=params)
+        return response
+
 greet_bot = BotHandler(os.getenv("TOKEN"))
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
+photo_text = ("фото", "фотография", "photo", "next")
 now = datetime.datetime.now()
 
 def main():
@@ -48,19 +57,32 @@ def main():
 
     while True:
         greet_bot.get_updates_json(new_offset)
-
+        photoIdList = []
         last_update = greet_bot.get_last_update()
         if(last_update):
-            last_update_id = last_update['update_id']
-            last_chat_text = last_update['message']['text']
-            last_chat_id = last_update['message']['chat']['id']
-            last_chat_name = last_update['message']['chat']['first_name']
-            if last_chat_text.lower() in hi_text:
-                greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
-            if last_chat_text.lower() in time_text:
-                greet_bot.send_message(last_chat_id,
-                                    "Сегодня {today}, время {hour}:{minute}".format(today=today, hour=hour, minute=minute))
-            new_offset = last_update_id+1
+            if(last_update['message'].get('text')):
+                last_update_id = last_update['update_id']
+                last_chat_text = last_update['message']['text']
+                last_chat_id = last_update['message']['chat']['id']
+                last_chat_name = last_update['message']['chat']['first_name']
+                # Приветствие
+                if last_chat_text.lower() in hi_text:
+                    greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
+                # Время
+                if last_chat_text.lower() in time_text:
+                    greet_bot.send_message(last_chat_id,
+                                        "Сегодня {today}, время {hour}:{minute}".format(today=today, hour=hour, minute=minute))
+                # Фото
+                if last_chat_text.lower() in photo_text:
+                    if(photoIdList):
+                        greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
+
+                new_offset = last_update_id+1
+            if(last_update.get('photo')):
+                last_photo_id = last_update['photo']['file_id']
+                photoIdList.append(last_photo_id)
+
+
 
 if __name__ == '__main__':
     try:
