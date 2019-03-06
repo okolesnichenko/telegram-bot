@@ -2,8 +2,8 @@ import requests
 import datetime
 import random
 import os
+import sqlite3
 from time import sleep
-
 
 class BotHandler:
     def __init__(self, token):
@@ -37,22 +37,43 @@ class BotHandler:
         response = requests.post(self.api_url + method, data=params)
         return response
 
-    def send_photo(self, chat, file_id):
-        params = {'chat_id':chat, 'photo': file_id}
-
     def send_photo(self, chat, photo):
         params = {'chat_id': chat, 'photo': photo}
         method = 'sendPhoto'
         response = requests.post(self.api_url + method, data=params)
         return response
 
-greet_bot = BotHandler(os.getenv("TOKEN"))
+class BotOptions:
+    def __init__(self):
+        self.greet_bot = BotHandler(os.getenv("TOKEN"))
+
+    def say_something(self, last_update, photoIdList):
+        last_update_id = last_update['update_id']
+        last_chat_text = last_update['message']['text']
+        last_chat_id = last_update['message']['chat']['id']
+        if last_chat_text.lower() in time_text:
+                greet_bot.send_message(last_chat_id, "Сегодня {today}, время {hour}:{minute}"
+                                       .format(today=time['today'], hour=time['hour'], minute=time['minute']))
+        if last_chat_text.lower() in hi_text:
+            self.greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
+        if last_chat_text.lower() in photo_text:
+            print(photoIdList)
+            if (photoIdList):
+                greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
+        return last_update_id
+
+
+conn = sqlite3.connect('model.db')
+c = conn.cursor()
+
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
 photo_text = ("фото", "фотография", "photo", "next")
 now = datetime.datetime.now()
 photoIdList = []
 
+def create_table():
+    c.execute("CREATE TABLE IF NOT EXISTS model(name TEXT, sex TEXT, age INTEGER, photo TEXT")
 
 def get_time():
     now = datetime.datetime.now()
@@ -63,29 +84,16 @@ def get_time():
     return data
 
 def main():
+    bot = BotOptions()
     new_offset = None
+    create_table()
     while True:
         greet_bot.get_updates_json(new_offset)
         last_update = greet_bot.get_last_update()
         time = get_time()
         if(last_update):
-            last_update_id = last_update['update_id']
-            if(last_update['message'].get('text')):
-                last_chat_text = last_update['message']['text']
-                last_chat_id = last_update['message']['chat']['id']
-                last_chat_name = last_update['message']['chat']['first_name']
-                # Приветствие
-                if last_chat_text.lower() in hi_text:
-                    greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
-                # Время
-                if last_chat_text.lower() in time_text:
-                    greet_bot.send_message(last_chat_id,"Сегодня {today}, время {hour}:{minute}"
-                                           .format(today=time['today'], hour=time['hour'], minute=time['minute']))
-                # Фото
-                if last_chat_text.lower() in photo_text:
-                    print(photoIdList)
-                    if(photoIdList):
-                        greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
+            if (last_update['message'].get('text')):
+                bot.say_something(last_update, photoIdList)
             if (last_update['message'].get('photo')):
                 last_photo_id = last_update['message']['photo'][0]['file_id']
                 photoIdList.append(last_photo_id)
