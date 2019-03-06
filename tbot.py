@@ -86,7 +86,7 @@ def create_table():
     #with conn.cursor() as cursor:
     cursor.execute("CREATE TABLE IF NOT EXISTS model"
                    "(id serial PRIMARY KEY, name varchar, sex varchar, age integer, photo varchar, discription varchar)")
-    cursor.execute("INSERT INTO model VALUES (%s, %s, %n, %s, %s)",('Oleg', 'm', 21, 'sadasd', 'ds'))
+    cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",('Oleg', 'm', 21, 'sadasd', 'ds'))
     cursor.execute("SELECT * FROM model;")
     print(cursor.fetchone())
     conn.commit()
