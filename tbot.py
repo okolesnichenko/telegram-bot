@@ -72,7 +72,7 @@ class BotOptions:
         return last_update_id
 
 def create_table():
-    c.execute("CREATE TABLE IF NOT EXISTS model(name TEXT, sex TEXT, age INTEGER, photo TEXT")
+    c.execute("CREATE TABLE IF NOT EXISTS model(name TEXT, sex TEXT, age INTEGER, photo TEXT)")
 
 def get_time():
     now = datetime.datetime.now()
