@@ -2,11 +2,7 @@ import requests
 import datetime
 import random
 import os
-import sqlite3
 from time import sleep
-
-conn = sqlite3.connect('model.db')
-c = conn.cursor()
 
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
@@ -71,9 +67,6 @@ class BotOptions:
                 self.greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
         return last_update_id
 
-def create_table():
-    c.execute("CREATE TABLE IF NOT EXISTS model(name TEXT, sex TEXT, age INTEGER, photo TEXT)")
-
 def get_time():
     now = datetime.datetime.now()
     today = now.day
@@ -96,15 +89,6 @@ def main():
             last_update_id = last_update['update_id']
             if (last_update['message'].get('text')):
                 bot.say_something(last_update, photoIdList, time)
-                arr.append("Oleg")
-                arr.append("man")
-                arr.append(13)
-                arr.append("asasas")
-                c.execute("INSERT INTO model VALUES(?,?,?,?)", arr)
-                conn.commit()
-                arr.clear()
-                c.execute('SELECT * FROM model WHERE name = ?', ['Oleg'])
-                rows = c.fetchall()
                 print(rows)
             if (last_update['message'].get('photo')):
                 last_photo_id = last_update['message']['photo'][0]['file_id']
