@@ -94,7 +94,6 @@ def main():
             last_update_id = last_update['update_id']
             if (last_update['message'].get('text')):
                 bot.say_something(last_update, photoIdList, time)
-                print(rows)
             if (last_update['message'].get('photo')):
                 last_photo_id = last_update['message']['photo'][0]['file_id']
                 photoIdList.append(last_photo_id)
