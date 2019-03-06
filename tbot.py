@@ -87,7 +87,7 @@ def main():
     bot = BotOptions(greet_bot)
     new_offset = None
     arr = []
-    #create_table()
+    create_table()
     while True:
         greet_bot.get_updates_json(new_offset)
         last_update = greet_bot.get_last_update()
