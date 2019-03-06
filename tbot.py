@@ -71,8 +71,8 @@ class BotOptions:
                 self.greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
         return last_update_id
 
-#def create_table():
-#    c.execute("CREATE TABLE IF NOT EXISTS model(name TEXT, sex TEXT, age INTEGER, photo TEXT")
+def create_table():
+    c.execute("CREATE TABLE IF NOT EXISTS model(name TEXT, sex TEXT, age INTEGER, photo TEXT")
 
 def get_time():
     now = datetime.datetime.now()
