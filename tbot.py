@@ -3,6 +3,13 @@ import datetime
 import random
 import os
 from time import sleep
+import psycopg2
+
+
+DATABASE_URL = os.environ['DATABASE_URL']
+
+conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+cursor = conn.cursor()
 
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
@@ -79,8 +86,6 @@ def main():
     greet_bot = BotHandler(os.getenv("TOKEN"))
     bot = BotOptions(greet_bot)
     new_offset = None
-    arr = []
-    create_table()
     while True:
         greet_bot.get_updates_json(new_offset)
         last_update = greet_bot.get_last_update()
