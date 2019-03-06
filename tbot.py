@@ -9,6 +9,7 @@ import psycopg2
 DATABASE_URL = os.environ['DATABASE_URL']
 
 conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+cursor = conn.cursor()
 
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
@@ -82,8 +83,8 @@ def get_time():
     return data
 
 def create_table():
-    with conn.cursor() as cursor:
-        cursor.execute("CREATE TABLE IF NOT EXISTS model(name TEXT, sex TEXT, age INTEGER, photo TEXT, discription TEXT)")
+    #with conn.cursor() as cursor:
+    cursor.execute("CREATE TABLE IF NOT EXISTS model(name TEXT, sex TEXT, age INTEGER, photo TEXT, discription TEXT)")
 
 
 def main():
