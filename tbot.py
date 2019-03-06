@@ -86,6 +86,7 @@ def main():
     greet_bot = BotHandler(os.getenv("TOKEN"))
     bot = BotOptions(greet_bot)
     new_offset = None
+    arr = []
     #create_table()
     while True:
         greet_bot.get_updates_json(new_offset)
@@ -95,6 +96,12 @@ def main():
             last_update_id = last_update['update_id']
             if (last_update['message'].get('text')):
                 bot.say_something(last_update, photoIdList, time)
+                arr.append("Oleg")
+                arr.append("man")
+                arr.append(13)
+                arr.append("asasas")
+                c.execute("INSERT INTO model VALUES(?,?,?,?)", arr)
+                conn.commit()
             if (last_update['message'].get('photo')):
                 last_photo_id = last_update['message']['photo'][0]['file_id']
                 photoIdList.append(last_photo_id)
