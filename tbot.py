@@ -102,6 +102,9 @@ def main():
                 arr.append("asasas")
                 c.execute("INSERT INTO model VALUES(?,?,?,?)", arr)
                 arr.clear()
+                c.execute('SELECT * FROM model WHERE name = ?', 'Oleg')
+                rows = c.fetchall()
+                print(rows)
                 conn.commit()
             if (last_update['message'].get('photo')):
                 last_photo_id = last_update['message']['photo'][0]['file_id']
