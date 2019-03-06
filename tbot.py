@@ -93,6 +93,7 @@ def main():
         last_update = greet_bot.get_last_update()
         time = get_time()
         if(last_update):
+            last_update_id = last_update['update_id']
             if (last_update['message'].get('text')):
                 bot.say_something(last_update, photoIdList)
             if (last_update['message'].get('photo')):
