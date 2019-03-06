@@ -61,14 +61,14 @@ class BotOptions:
         last_chat_id = last_update['message']['chat']['id']
         last_chat_name = last_update['message']['chat']['first_name']
         if last_chat_text.lower() in time_text:
-                greet_bot.send_message(last_chat_id, "Сегодня {today}, время {hour}:{minute}"
+                self.greet_bot.send_message(last_chat_id, "Сегодня {today}, время {hour}:{minute}"
                                        .format(today=time['today'], hour=time['hour'], minute=time['minute']))
         if last_chat_text.lower() in hi_text:
             self.greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
         if last_chat_text.lower() in photo_text:
             print(photoIdList)
             if (photoIdList):
-                greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
+                self.greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
         return last_update_id
 
 #def create_table():
