@@ -11,7 +11,6 @@ c = conn.cursor()
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
 photo_text = ("фото", "фотография", "photo", "next")
-now = datetime.datetime.now()
 photoIdList = []
 
 class BotHandler:
@@ -56,7 +55,7 @@ class BotOptions:
     def __init__(self, greet_bot):
         self.greet_bot = greet_bot
 
-    def say_something(self, last_update, photoIdList):
+    def say_something(self, last_update, photoIdList, time):
         last_update_id = last_update['update_id']
         last_chat_text = last_update['message']['text']
         last_chat_id = last_update['message']['chat']['id']
@@ -95,7 +94,7 @@ def main():
         if(last_update):
             last_update_id = last_update['update_id']
             if (last_update['message'].get('text')):
-                bot.say_something(last_update, photoIdList)
+                bot.say_something(last_update, photoIdList, time)
             if (last_update['message'].get('photo')):
                 last_photo_id = last_update['message']['photo'][0]['file_id']
                 photoIdList.append(last_photo_id)
