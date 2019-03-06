@@ -84,7 +84,8 @@ def get_time():
 
 def create_table():
     #with conn.cursor() as cursor:
-    cursor.execute("CREATE TABLE IF NOT EXISTS model(id serial PRIMARY KEY, name varchar(50), sex varchar(20), age integer(50), photo varchar(50), discription varchar(200))")
+    cursor.execute("CREATE TABLE IF NOT EXISTS model"
+                   "(id serial PRIMARY KEY, name varchar, sex varchar, age integer, photo varchar, discription varchar)")
     cursor.execute("INSERT INTO model (name, sex, age, photo, discription)",('Oleg', 'm', 21, 'sadasd', 'ds'))
     cursor.execute("SELECT * FROM model;")
     print(cursor.fetchone())
