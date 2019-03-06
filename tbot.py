@@ -5,6 +5,15 @@ import os
 import sqlite3
 from time import sleep
 
+conn = sqlite3.connect('model.db')
+c = conn.cursor()
+
+hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
+time_text = ("сколько время", "время", "дата", "date", "time")
+photo_text = ("фото", "фотография", "photo", "next")
+now = datetime.datetime.now()
+photoIdList = []
+
 class BotHandler:
     def __init__(self, token):
         self.token = token
@@ -44,8 +53,8 @@ class BotHandler:
         return response
 
 class BotOptions:
-    def __init__(self):
-        self.greet_bot = BotHandler(os.getenv("TOKEN"))
+    def __init__(self, greet_bot):
+        self.greet_bot = greet_bot
 
     def say_something(self, last_update, photoIdList):
         last_update_id = last_update['update_id']
@@ -62,18 +71,8 @@ class BotOptions:
                 greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
         return last_update_id
 
-
-conn = sqlite3.connect('model.db')
-c = conn.cursor()
-
-hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
-time_text = ("сколько время", "время", "дата", "date", "time")
-photo_text = ("фото", "фотография", "photo", "next")
-now = datetime.datetime.now()
-photoIdList = []
-
-def create_table():
-    c.execute("CREATE TABLE IF NOT EXISTS model(name TEXT, sex TEXT, age INTEGER, photo TEXT")
+#def create_table():
+#    c.execute("CREATE TABLE IF NOT EXISTS model(name TEXT, sex TEXT, age INTEGER, photo TEXT")
 
 def get_time():
     now = datetime.datetime.now()
@@ -84,9 +83,10 @@ def get_time():
     return data
 
 def main():
-    bot = BotOptions()
+    greet_bot = BotHandler(os.getenv("TOKEN"))
+    bot = BotOptions(greet_bot)
     new_offset = None
-    create_table()
+    #create_table()
     while True:
         greet_bot.get_updates_json(new_offset)
         last_update = greet_bot.get_last_update()
