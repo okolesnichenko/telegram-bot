@@ -4,11 +4,6 @@ import random
 import os
 import psycopg2
 
-
-DATABASE_URL = os.environ['DATABASE_URL']
-
-
-
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
 photo_text = ("фото", "фотография", "photo", "next")
@@ -118,7 +113,7 @@ def create_table(cursor, conn):
     conn.commit()
 
 def main():
-    db = DataBaseOperations()
+    db = DataBaseOperations(os.environ['DATABASE_URL'])
     greet_bot = BotHandler(os.getenv("TOKEN"))
     bot = BotOptions(greet_bot, db)
     new_offset = None
