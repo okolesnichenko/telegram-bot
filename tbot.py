@@ -2,7 +2,6 @@ import requests
 import datetime
 import random
 import os
-from time import sleep
 import psycopg2
 
 
@@ -18,11 +17,21 @@ photoIdList = []
 
 class DataBaseOperations():
     def __init__(self, DATABASE_URL):
-        self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-        self.cursor = self.conn.cursor()
+        try:
+            self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+            self.cursor = self.conn.cursor()
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS model"
+                           "(id serial PRIMARY KEY, name varchar, sex varchar, age integer, photo varchar, discription varchar)")
+        except (Exception, psycopg2.Error) as error:
+            print("Error while connecting to PostgreSQL", error)
+        finally:
+            if(self.conn):
+                self.cursor.close()
+                self.conn.close()
+                print("PostgresSQL connection closed")
 
-    def add_user(self):
-        pass
+    def add_user(self, data):
+        self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",data)
 
 
 class BotHandler:
@@ -64,12 +73,14 @@ class BotHandler:
         return response
 
 class BotOptions:
-    def __init__(self, greet_bot):
+    def __init__(self, greet_bot, db):
         self.greet_bot = greet_bot
+        self.database = db
 
     def registration(self, last_update):
-        last_chat_id = last_update['message']['chat']['id']
-        self.greet_bot.send_message(last_chat_id, "Введите \"Имя\" для регистрации")
+        last_chat_name = last_update['message']['chat']['first_name']
+        data = {'name':last_chat_name, 'sex':'m', 'age':23, 'photo':'somephoto', 'description':'some guy'}
+        self.database.add_user(data)
 
     def say_something(self, last_update, photoIdList, time):
         last_update_id = last_update['update_id']
@@ -99,16 +110,17 @@ def get_time():
 
 def create_table(cursor, conn):
     #with conn.cursor() as cursor:
-    cursor.execute("CREATE TABLE IF NOT EXISTS model"
-                   "(id serial PRIMARY KEY, name varchar, sex varchar, age integer, photo varchar, discription varchar)")
+    #cursor.execute("CREATE TABLE IF NOT EXISTS model"
+    #               "(id serial PRIMARY KEY, name varchar, sex varchar, age integer, photo varchar, discription varchar)")
     #cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",('Oleg', 'm', 21, 'sadasd', 'ds'))
     cursor.execute("SELECT * FROM model;")
     print(cursor.fetchone())
     conn.commit()
 
 def main():
+    db = DataBaseOperations()
     greet_bot = BotHandler(os.getenv("TOKEN"))
-    bot = BotOptions(greet_bot)
+    bot = BotOptions(greet_bot, db)
     new_offset = None
     #create_table()
     while True:
