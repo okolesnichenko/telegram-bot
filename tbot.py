@@ -21,7 +21,8 @@ class DataBaseOperations():
             print("Error while connecting to PostgreSQL", error)
 
     def add_user(self, data):
-        self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",tuple(data))
+        tdata = tuple(data)
+        self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
         print(self.cursor.fetchone())
         self.conn.commit()
 
