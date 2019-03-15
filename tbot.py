@@ -13,7 +13,6 @@ photoIdList = []
 class DataBaseOperations():
     def __init__(self, DATABASE_URL):
         try:
-            print(DATABASE_URL)
             self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
             self.cursor = self.conn.cursor()
             self.cursor.execute("CREATE TABLE IF NOT EXISTS model"
@@ -22,8 +21,9 @@ class DataBaseOperations():
             print("Error while connecting to PostgreSQL", error)
 
     def add_user(self, data):
-        self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",data)
-
+        self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",tuple(data))
+        print(self.cursor.fetchone())
+        self.conn.commit()
 
 class BotHandler:
     def __init__(self, token):
@@ -99,21 +99,11 @@ def get_time():
     data = {"today": today, "hour": hour, "minute": minute}
     return data
 
-def create_table(cursor, conn):
-    #with conn.cursor() as cursor:
-    #cursor.execute("CREATE TABLE IF NOT EXISTS model"
-    #               "(id serial PRIMARY KEY, name varchar, sex varchar, age integer, photo varchar, discription varchar)")
-    #cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",('Oleg', 'm', 21, 'sadasd', 'ds'))
-    cursor.execute("SELECT * FROM model;")
-    print(cursor.fetchone())
-    conn.commit()
-
 def main():
     db = DataBaseOperations(os.environ['DATABASE_URL'])
     greet_bot = BotHandler(os.getenv("TOKEN"))
     bot = BotOptions(greet_bot, db)
     new_offset = None
-    #create_table()
     while True:
         greet_bot.get_updates_json(new_offset)
         last_update = greet_bot.get_last_update()
