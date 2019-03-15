@@ -20,11 +20,6 @@ class DataBaseOperations():
                            "(id serial PRIMARY KEY, name varchar, sex varchar, age integer, photo varchar, discription varchar)")
         except (Exception, psycopg2.Error) as error:
             print("Error while connecting to PostgreSQL", error)
-        finally:
-            if(self.conn):
-                self.cursor.close()
-                self.conn.close()
-                print("PostgresSQL connection closed")
 
     def add_user(self, data):
         self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",data)
