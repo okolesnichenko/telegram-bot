@@ -97,10 +97,20 @@ def get_time():
     data = {"today": today, "hour": hour, "minute": minute}
     return data
 
+def create_table():
+    #with conn.cursor() as cursor:
+    cursor.execute("CREATE TABLE IF NOT EXISTS model"
+                   "(id serial PRIMARY KEY, name varchar, sex varchar, age integer, photo varchar, discription varchar)")
+    #cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",('Oleg', 'm', 21, 'sadasd', 'ds'))
+    cursor.execute("SELECT * FROM model;")
+    print(cursor.fetchone())
+    conn.commit()
+
 def main():
     greet_bot = BotHandler(os.getenv("TOKEN"))
     bot = BotOptions(greet_bot)
     new_offset = None
+    create_table()
     while True:
         greet_bot.get_updates_json(new_offset)
         last_update = greet_bot.get_last_update()
