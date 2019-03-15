@@ -8,13 +8,22 @@ import psycopg2
 
 DATABASE_URL = os.environ['DATABASE_URL']
 
-conn = psycopg2.connect(DATABASE_URL, sslmode='require')
-cursor = conn.cursor()
+
 
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
 photo_text = ("фото", "фотография", "photo", "next")
+reg_text = ("регистрация", "зарегестрироваться", "рег")
 photoIdList = []
+
+class DataBaseOperations():
+    def __init__(self, DATABASE_URL):
+        self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
+        self.cursor = conn.cursor()
+
+    def add_user(self):
+        pass
+
 
 class BotHandler:
     def __init__(self, token):
@@ -58,6 +67,10 @@ class BotOptions:
     def __init__(self, greet_bot):
         self.greet_bot = greet_bot
 
+    def registration(self, last_update):
+        last_chat_id = last_update['message']['chat']['id']
+        self.greet_bot.send_message(last_chat_id, "Введите \"Имя\" для регистрации")
+
     def say_something(self, last_update, photoIdList, time):
         last_update_id = last_update['update_id']
         last_chat_text = last_update['message']['text']
@@ -72,6 +85,8 @@ class BotOptions:
             print(photoIdList)
             if (photoIdList):
                 self.greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
+        if last_chat_text.lower() in reg_text:
+            self.registration(last_update)
         return last_update_id
 
 def get_time():
