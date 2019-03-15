@@ -13,6 +13,7 @@ photoIdList = []
 class DataBaseOperations():
     def __init__(self, DATABASE_URL):
         try:
+            print(DATABASE_URL)
             self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
             self.cursor = self.conn.cursor()
             self.cursor.execute("CREATE TABLE IF NOT EXISTS model"
