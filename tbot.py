@@ -70,7 +70,11 @@ class BotOptions:
 
     def registration(self, last_update):
         last_chat_name = last_update['message']['chat']['first_name']
-        data = {'name':last_chat_name, 'sex':'m', 'age':'23', 'photo':'somephoto', 'description':'some guy'}
+        age = 23
+        sex = 'm'
+        photo = 'somephoto'
+        description = 'some guy'
+        data = {'name':last_chat_name, 'sex':sex, 'age': age, 'photo':photo, 'description': description}
         self.database.add_user(data)
 
     def say_something(self, last_update, photoIdList, time):
