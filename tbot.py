@@ -27,7 +27,10 @@ class DataBaseOperations():
         #self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
         #self.cursor.execute("INSERT INTO modeltest (username, name, photo) VALUES (%s, %s, %s)", tdata)
         self.conn.commit()
-        print(self.cursor.fetchall())
+        try:
+            print(self.cursor.fetchall())
+        except (Exception, psycopg2.Error) as error:
+            print("No result")
 
 class BotHandler:
     def __init__(self, token):
