@@ -15,14 +15,17 @@ class DataBaseOperations():
         try:
             self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
             self.cursor = self.conn.cursor()
-            self.cursor.execute("CREATE TABLE IF NOT EXISTS model"
-                           "(id serial PRIMARY KEY, name varchar, sex varchar, age integer, photo varchar, discription varchar)")
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS modeltest"
+                                "(username varchar PRIMARY KEY, name varchar,  photo varchar)")
+            #self.cursor.execute("CREATE TABLE IF NOT EXISTS model"
+            #               "(id serial PRIMARY KEY, name varchar, sex varchar, age integer, photo varchar, discription varchar)")
         except (Exception, psycopg2.Error) as error:
             print("Error while connecting to PostgreSQL", error)
 
     def add_user(self, data):
         tdata = tuple(data)
-        self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
+        #self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
+        self.cursor.execute("INSERT INTO modeltest (username, name, photo) VALUES (%s, %s, %s)", tdata)
         print(self.cursor.fetchone())
         self.conn.commit()
 
@@ -71,11 +74,9 @@ class BotOptions:
 
     def registration(self, last_update):
         last_chat_name = last_update['message']['chat']['first_name']
-        age = 23
-        sex = 'm'
+        last_chat_username = last_update['message']['chat']['username']
         photo = 'somephoto'
-        description = 'some guy'
-        data = {'name':last_chat_name, 'sex':sex, 'age': age, 'photo':photo, 'description': description}
+        data = {'username':last_chat_username, 'name':last_chat_name, 'photo':photo}
         self.database.add_user(data)
 
     def say_something(self, last_update, photoIdList, time):
