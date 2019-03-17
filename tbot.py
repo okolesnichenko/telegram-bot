@@ -26,8 +26,8 @@ class DataBaseOperations():
         tdata = tuple(data)
         #self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
         self.cursor.execute("INSERT INTO modeltest (username, name, photo) VALUES (%s, %s, %s)", tdata)
-        print(self.cursor.fetchone())
         self.conn.commit()
+        print(self.cursor.fetchone())
 
 class BotHandler:
     def __init__(self, token):
