@@ -33,6 +33,15 @@ class DataBaseOperations():
             print(self.cursor.fetchone())
         except (Exception, psycopg2.Error) as error:
             print("Postgres Error in add_user()")
+    def check_user(self, username):
+        try:
+            raw = self.cursor.fetchall()
+            if username in raw['username']:
+                return username
+        except (Exception, psycopg2.Error) as error:
+            print("Postgres Error raw = self.cursor.fetchall()")
+
+
 
 class BotHandler:
     def __init__(self, token):
