@@ -27,12 +27,12 @@ class DataBaseOperations():
         print(tdata)
         #self.cursor.execute("INSERT INTO model (name, sex, age,
         #photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
-        self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata)
-        self.conn.commit()
         try:
+            self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata)
+            self.conn.commit()
             print(self.cursor.fetchone())
         except (Exception, psycopg2.Error) as error:
-            print("No result")
+            print("Postgres Error in add_user()")
 
 class BotHandler:
     def __init__(self, token):
