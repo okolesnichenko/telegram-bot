@@ -27,7 +27,7 @@ class DataBaseOperations():
         print(tdata)
         #self.cursor.execute("INSERT INTO model (name, sex, age,
         #photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
-        self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata)
+        self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata.values())
         self.conn.commit()
         try:
             print(self.cursor.fetchall())
