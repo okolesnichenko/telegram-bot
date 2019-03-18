@@ -30,7 +30,7 @@ class DataBaseOperations():
         self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata)
         self.conn.commit()
         try:
-            print(self.cursor.fetchall())
+            print(self.cursor.fetchone())
         except (Exception, psycopg2.Error) as error:
             print("No result")
 
