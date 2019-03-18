@@ -24,10 +24,10 @@ class DataBaseOperations():
 
     def add_user(self, data):
         tdata = tuple(data.values())
-        print(tdata)
         #self.cursor.execute("INSERT INTO model (name, sex, age,
         #photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
         try:
+            print(self.cursor.fetchone())
             self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata)
             self.conn.commit()
             print(self.cursor.fetchone())
