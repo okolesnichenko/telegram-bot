@@ -24,8 +24,10 @@ class DataBaseOperations():
 
     def add_user(self, data):
         tdata = tuple(data)
-        #self.cursor.execute("INSERT INTO model (name, sex, age, photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
-        #self.cursor.execute("INSERT INTO modeltest (username, name, photo) VALUES (%s, %s, %s)", tdata)
+        print(tdata)
+        #self.cursor.execute("INSERT INTO model (name, sex, age,
+        #photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
+        self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata)
         self.conn.commit()
         try:
             print(self.cursor.fetchall())
@@ -126,6 +128,8 @@ def main():
                 photoIdList.append(last_photo_id)
                 print(photoIdList)
             new_offset = last_update_id + 1
+    cur.close()
+    conn.close()
 
 if __name__ == '__main__':
     try:
