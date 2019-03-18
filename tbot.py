@@ -23,11 +23,11 @@ class DataBaseOperations():
             print("Error while connecting to PostgreSQL", error)
 
     def add_user(self, data):
-        tdata = tuple(data)
+        tdata = tuple(data.values())
         print(tdata)
         #self.cursor.execute("INSERT INTO model (name, sex, age,
         #photo, discription) VALUES (%s, %s, %s, %s, %s)",tdata)
-        self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata.values())
+        self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata)
         self.conn.commit()
         try:
             print(self.cursor.fetchall())
