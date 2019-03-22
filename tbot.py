@@ -33,10 +33,8 @@ def main():
                 bot.say_something(last_update, photoIdList, time)
             # If message type is photo (file) ->
             if (last_update['message'].get('photo')):
-                if(data.get('username')):
-                    data = bot.get_photo_and_data(last_update)
-                    db.add_user(data)
-                    data = {}
+                data = bot.get_photo_and_data(last_update)
+                db.add_user(data)
 
             new_offset = last_update_id + 1
     cur.close()
