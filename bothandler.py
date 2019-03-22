@@ -45,7 +45,8 @@ class BotHandler:
         reg_button = InlineKeyboardButton(text="Registration")
         keyboard.add(hi_button)
         keyboard.add(reg_button)
-        params = {'chat_id':chat, 'text':'OK', 'reply_markup':buttons}
+        #OMG I AM STUPID
+        params = {'chat_id':chat, 'text':'OK', 'reply_markup':keyboard}
         method = 'sendMessage'
         response = requests.post(self.api_url + method, data=params)
         return response
