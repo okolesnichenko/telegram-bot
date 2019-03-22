@@ -25,6 +25,7 @@ class DataBaseOperations():
         try:
             self.cursor.execute("SELECT * FROM modeltest")
             raw = self.cursor.fetchall()
+            print(raw)
             if username in raw['username']:
                 return username
         except (Exception, psycopg2.Error) as error:
