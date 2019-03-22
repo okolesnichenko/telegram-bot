@@ -19,19 +19,21 @@ def main():
     greet_bot = BotHandler(os.getenv("TOKEN"))
     bot = BotOptions(greet_bot, db)
     new_offset = None
+    data = ()
     while True:
         greet_bot.get_updates_json(new_offset)
         last_update = greet_bot.get_last_update()
         time = get_time()
         if(last_update):
             last_update_id = last_update['update_id']
-            # Если введен текст ->
+            # If message type is text ->
             if (last_update['message'].get('text')):
-                bot.say_something(last_update, photoIdList, time)
-            # Если отправлена фотограифия ->
+                data = bot.say_something(last_update, photoIdList, time)
+            # If message type is photo (file) ->
             if (last_update['message'].get('photo')):
                 last_photo_id = last_update['message']['photo'][0]['file_id']
-                db.add_user()
+                data['photo'] = last_photo_id
+                db.add_user(data)
             new_offset = last_update_id + 1
     cur.close()
     conn.close()

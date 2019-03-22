@@ -17,8 +17,9 @@ class DataBaseOperations():
             try:
                 print(self.cursor.fetchone())
                 self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata)
+                self.cursor.execute("SELECT * FROM modeltest")
                 self.conn.commit()
-                print(self.cursor.fetchone())
+                print(self.cursor.fetcall())
             except (Exception, psycopg2.Error) as error:
                 print("Postgres Error in add_user()")
     # Проверка на наличие пользователя в db

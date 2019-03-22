@@ -37,6 +37,7 @@ class BotOptions:
             # Get username and name
             data = self.get_user_data(last_update)
             print(data)
+            return data
             # Wait photo!
             # TO DO
         return last_update_id
