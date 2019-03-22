@@ -31,8 +31,7 @@ def main():
             # If message type is photo (file) ->
             if (last_update['message'].get('photo')):
                 if(data.get('username')):
-                    last_photo_id = last_update['message']['photo'][0]['file_id']
-                    data['photo'] = last_photo_id
+                    bot.get_photo_and_data(last_update)
                     db.add_user(data)
                     data = {}
 

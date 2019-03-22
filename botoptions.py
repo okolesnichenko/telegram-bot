@@ -10,13 +10,20 @@ class BotOptions:
         self.greet_bot = greet_bot
         self.database = db
 
+    # Delete after reg realisation
     def get_user_data(self, last_update):
         last_chat_name = last_update['message']['chat']['first_name']
         last_chat_username = last_update['message']['chat']['username']
         # Необходимо поулчить file_id от отправленной фото
         # и передать его для добавления в бд
-        photo = ''
-        data = {'username':last_chat_username, 'name':last_chat_name, 'photo':photo}
+        data = {'username':last_chat_username, 'name':last_chat_name, 'photo':''}
+        return data
+
+    def get_photo_and_data(self, last_update):
+        last_chat_name = last_update['message']['chat']['first_name']
+        last_chat_username = last_update['message']['chat']['username']
+        last_photo_id = last_update['message']['photo'][0]['file_id']
+        data = {'username': last_chat_username, 'name': last_chat_name, 'photo': last_photo_id}
         return data
 
     def say_something(self, last_update, photoIdList, time):
@@ -34,10 +41,6 @@ class BotOptions:
         # Type "registration"
         if last_chat_text.lower() in reg_text:
             self.greet_bot.send_message(last_chat_id, "Send photo")
-            # Get username and name
-            data = self.get_user_data(last_update)
-            print(data)
-            return data
             # Wait photo!
             # TO DO
         return last_update_id
