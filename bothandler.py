@@ -1,4 +1,5 @@
 import requests
+import json
 
 class BotHandler:
     def __init__(self, token):
@@ -35,5 +36,12 @@ class BotHandler:
     def send_photo(self, chat, photo):
         params = {'chat_id': chat, 'photo': photo}
         method = 'sendPhoto'
+        response = requests.post(self.api_url + method, data=params)
+        return response
+
+    def send_message_with_buutons(self, chat):
+        buttons = json.dumps({'inline_keyboard':[[{'text':'Hello'},{'text':'Registration'}]]})
+        params = {'chat_id':chat, 'reply_markup':buttons}
+        method = 'sendMessage'
         response = requests.post(self.api_url + method, data=params)
         return response
