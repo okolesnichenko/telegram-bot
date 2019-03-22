@@ -9,7 +9,7 @@ class DataBaseOperations():
                                 "(username varchar PRIMARY KEY, name varchar,  photo varchar)")
         except (Exception, psycopg2.Error) as error:
             print("Error while connecting to PostgreSQL", error)
-    # Добавление пользователя в db
+    # Add user to db
     def add_user(self, data):
         # data -> username, name, photo
         if (self.check_user(data.get('username'))):
@@ -20,7 +20,7 @@ class DataBaseOperations():
                 self.conn.commit()
             except (Exception, psycopg2.Error) as error:
                 print("Postgres Error in add_user()")
-    # Проверка на наличие пользователя в db
+    # Сheck username in db
     def check_user(self, username):
         try:
             self.cursor("SELECT * FROM modeltest")
