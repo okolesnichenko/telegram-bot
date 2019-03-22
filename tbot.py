@@ -25,12 +25,13 @@ def main():
         time = get_time()
         if(last_update):
             last_update_id = last_update['update_id']
+            # Если введен текст ->
             if (last_update['message'].get('text')):
                 bot.say_something(last_update, photoIdList, time)
+            # Если отправлена фотограифия ->
             if (last_update['message'].get('photo')):
                 last_photo_id = last_update['message']['photo'][0]['file_id']
-                photoIdList.append(last_photo_id)
-                print(photoIdList)
+                db.add_user()
             new_offset = last_update_id + 1
     cur.close()
     conn.close()
