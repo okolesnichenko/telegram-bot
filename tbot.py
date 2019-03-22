@@ -19,7 +19,6 @@ def main():
     greet_bot = BotHandler(os.getenv("TOKEN"))
     bot = BotOptions(greet_bot, db)
     new_offset = None
-    data = ()
     while True:
         greet_bot.get_updates_json(new_offset)
         last_update = greet_bot.get_last_update()
@@ -31,9 +30,12 @@ def main():
                 data = bot.say_something(last_update, photoIdList, time)
             # If message type is photo (file) ->
             if (last_update['message'].get('photo')):
-                last_photo_id = last_update['message']['photo'][0]['file_id']
-                data['photo'] = last_photo_id
-                db.add_user(data)
+                if(data.get('username')):
+                    last_photo_id = last_update['message']['photo'][0]['file_id']
+                    data['photo'] = last_photo_id
+                    db.add_user(data)
+                    data = {}
+
             new_offset = last_update_id + 1
     cur.close()
     conn.close()
