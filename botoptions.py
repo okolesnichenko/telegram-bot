@@ -2,8 +2,7 @@ import random
 
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
-photo_text = ("фото", "фотография", "photo", "next")
-reg_text = ("регистрация", "зарегестрироваться", "рег")
+reg_text = ("регистрация", "зарегестрироваться", "рег", "registration")
 
 
 class BotOptions:
@@ -25,20 +24,19 @@ class BotOptions:
         last_chat_text = last_update['message']['text']
         last_chat_id = last_update['message']['chat']['id']
         last_chat_name = last_update['message']['chat']['first_name']
+        # Type "time"
         if last_chat_text.lower() in time_text:
                 self.greet_bot.send_message(last_chat_id, "Сегодня {today}, время {hour}:{minute}"
                                        .format(today=time['today'], hour=time['hour'], minute=time['minute']))
+        # Type "hi"
         if last_chat_text.lower() in hi_text:
             self.greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
-        # Проверка введенного текста
-        if last_chat_text.lower() in photo_text:
-            print(photoIdList)
-            if (photoIdList):
-                self.greet_bot.send_photo(last_chat_id, random.choice(photoIdList))
-        # Ввод "регистрация"
+        # Type "registration"
         if last_chat_text.lower() in reg_text:
-            self.greet_bot.send_message(last_chat_id, "Отправьте фотографию")
-            # Получаем username and name
+            self.greet_bot.send_message(last_chat_id, "Send photo")
+            # Get username and name
             data = self.get_user_data(last_update)
             print(data)
+            # Wait photo!
+            # TO DO
         return last_update_id
