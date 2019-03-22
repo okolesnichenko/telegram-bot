@@ -26,11 +26,11 @@ class BotOptions:
         last_chat_name = last_update['message']['chat']['first_name']
         # Type "time"
         if last_chat_text.lower() in time_text:
-                self.greet_bot.send_message(last_chat_id, "Сегодня {today}, время {hour}:{minute}"
+                self.greet_bot.send_message(last_chat_id, "Today {today}, time {hour}:{minute}"
                                        .format(today=time['today'], hour=time['hour'], minute=time['minute']))
         # Type "hi"
         if last_chat_text.lower() in hi_text:
-            self.greet_bot.send_message(last_chat_id, "Привет, друг {}".format(last_chat_name))
+            self.greet_bot.send_message(last_chat_id, "Hello {}, my friend".format(last_chat_name))
         # Type "registration"
         if last_chat_text.lower() in reg_text:
             self.greet_bot.send_message(last_chat_id, "Send photo")
