@@ -12,7 +12,7 @@ class DataBaseOperations():
     # Add user to db
     def add_user(self, data):
         # data -> username, name, photo
-        if (self.check_user(data.get('username'))):
+        if not (self.check_user(data.get('username'))):
             tdata = tuple(data.values())
             try:
                 print(tdata)
@@ -25,9 +25,9 @@ class DataBaseOperations():
         try:
             self.cursor.execute("SELECT * FROM modeltest")
             raw = self.cursor.fetchall()
-            print(raw)
-            if username in raw['username']:
-                return username
+            for user in raw:
+                if (user[0] == username):
+                    return username
         except (Exception, psycopg2.Error) as error:
             print("Postgres Error raw = self.cursor.fetchall()")
             print(error)
