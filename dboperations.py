@@ -23,6 +23,7 @@ class DataBaseOperations():
     # Проверка на наличие пользователя в db
     def check_user(self, username):
         try:
+            self.cursor("SELECT * FROM modeltest")
             raw = self.cursor.fetchall()
             if username in raw['username']:
                 return username
