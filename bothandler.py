@@ -1,5 +1,5 @@
 import requests
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+import json
 
 class BotHandler:
     def __init__(self, token):
@@ -40,12 +40,9 @@ class BotHandler:
         return response
 
     def send_message_with_buttons(self, chat):
-        keyboard = InlineKeyboardMarkup()
-        hi_button = InlineKeyboardButton(text="Hello")
-        reg_button = InlineKeyboardButton(text="Registration")
-        keyboard.add(hi_button)
-        keyboard.add(reg_button)
-        params = {'chat_id':chat, 'text':'OK', 'reply_markup':hi_button}
+        # Old method, later i will change it TO DO
+        buttons = json.dumps({'inline_keyboard': [[{'text': 'текст1', 'url': 'http://ya.ru'}]]})
+        params = {'chat_id':chat, 'text':'OK', 'reply_markup':buttons}
         method = 'sendMessage'
         response = requests.post(self.api_url + method, data=params)
         return response
