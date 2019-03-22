@@ -15,8 +15,11 @@ def get_time():
     return data
 
 def main():
+    # DB operation
     db = DataBaseOperations(os.environ['DATABASE_URL'])
+    # Bot api telegram
     greet_bot = BotHandler(os.getenv("TOKEN"))
+    # Bot with my functions
     bot = BotOptions(greet_bot, db)
     new_offset = None
     while True:
@@ -27,11 +30,11 @@ def main():
             last_update_id = last_update['update_id']
             # If message type is text ->
             if (last_update['message'].get('text')):
-                data = bot.say_something(last_update, photoIdList, time)
+                bot.say_something(last_update, photoIdList, time)
             # If message type is photo (file) ->
             if (last_update['message'].get('photo')):
                 if(data.get('username')):
-                    bot.get_photo_and_data(last_update)
+                    data = bot.get_photo_and_data(last_update)
                     db.add_user(data)
                     data = {}
 
