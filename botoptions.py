@@ -32,7 +32,7 @@ class BotOptions:
         last_chat_id = last_update['message']['chat']['id']
         last_chat_name = last_update['message']['chat']['first_name']
         # Type "time"
-        self.greet_bot.send_message_with_buutons(last_chat_id)
+        self.greet_bot.send_message_with_buttons(last_chat_id)
         if last_chat_text.lower() in time_text:
                 self.greet_bot.send_message(last_chat_id, "Today {today}, time {hour}:{minute}"
                                        .format(today=time['today'], hour=time['hour'], minute=time['minute']))
