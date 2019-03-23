@@ -30,15 +30,18 @@ class BotOptions:
         # Here is switch callback (1: hello, 2: registratiom, 3:rules, 4:about us)
         keys = ('hello', 'registration', 'rules', 'about')
         data = last_update['callback_query']['data']
+        last_chat_id = last_update['message']['chat']['id']
+        last_chat_name = last_update['message']['chat']['first_name']
         # This is bad TO DO
         if (data == keys[0]):
-            pass
+            self.greet_bot.send_message(last_chat_id, "Hello {}, my friend. Let's play!".format(last_chat_name))
         elif (data == keys[1]):
-            pass
+            self.greet_bot.send_message(last_chat_id, "Send photo")
         elif (data == keys[2]):
-            pass
+            self.greet_bot.send_message(last_chat_id, "Please don't spam to this bot".format(last_chat_name))
         elif (data == keys[3]):
-            pass
+            self.greet_bot.send_message(last_chat_id, "I am junior python developer. "
+                                                      "Here is my application. You are welcome {}.".format(last_chat_name))
         print(data)
 
     def say_something(self, last_update, time):
@@ -46,10 +49,6 @@ class BotOptions:
         last_chat_text = last_update['message']['text']
         last_chat_id = last_update['message']['chat']['id']
         last_chat_name = last_update['message']['chat']['first_name']
-        # Type "time"
-        if last_chat_text.lower() in time_text:
-                self.greet_bot.send_message(last_chat_id, "Today {today}, time {hour}:{minute}"
-                                       .format(today=time['today'], hour=time['hour'], minute=time['minute']))
         # Type "hi"
         if last_chat_text.lower() in hi_text:
             # Send buttons
