@@ -37,6 +37,7 @@ def main():
         last_update = greet_bot.get_last_update()
         time = get_time()
         if(last_update):
+            print(last_update)
             last_update_id = last_update['update_id']
             # If message type is text ->
             if (last_update.get('message').get('text')):
