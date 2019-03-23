@@ -37,9 +37,8 @@ class BotOptions:
                                        .format(today=time['today'], hour=time['hour'], minute=time['minute']))
         # Type "hi"
         if last_chat_text.lower() in hi_text:
-            self.greet_bot.send_message(last_chat_id, "Hello {}, my friend".format(last_chat_name))
             # Send buttons
-            self.greet_bot.send_message_with_buttons(last_chat_id)
+            self.greet_bot.send_message_with_buttons(last_chat_id, "Hello {}, make a choice:".format(last_chat_name))
         # Type "registration"
         if last_chat_text.lower() in reg_text:
             self.greet_bot.send_message(last_chat_id, "Send photo")

@@ -6,6 +6,16 @@ from bothandler import BotHandler
 
 photoIdList = []
 
+''' 
+Project: Telegram Bot
+Language: Python
+Server: heroku
+
+1. create a menu
+2. add menu functions
+3. implement the functions of the game "badoosimulation"
+'''
+
 def get_time():
     now = datetime.datetime.now()
     today = now.day
@@ -29,10 +39,10 @@ def main():
         if(last_update):
             last_update_id = last_update['update_id']
             # If message type is text ->
-            if (last_update['message'].get('text')):
+            if (last_update.get('message').get('text')):
                 bot.say_something(last_update, photoIdList, time)
             # If message type is photo (file) ->
-            if (last_update['message'].get('photo')):
+            if (last_update.get('message').get('photo')):
                 data = bot.get_photo_and_data(last_update)
                 db.add_user(data)
 
