@@ -10,7 +10,7 @@ class BotOptions:
         self.greet_bot = greet_bot
         self.database = db
 
-    # Delete after reg realisation
+    # Delete after reg realisation TO DO
     def get_user_data(self, last_update):
         last_chat_name = last_update['message']['chat']['first_name']
         last_chat_username = last_update['message']['chat']['username']
@@ -27,7 +27,18 @@ class BotOptions:
         return data
 
     def menu_switcher(self, last_update):
+        # Here is switch callback (1: hello, 2: registratiom, 3:rules, 4:about us)
+        keys = ('hello', 'registration', 'rules', 'about')
         data = last_update['callback_query']['data']
+        # This is bad TO DO
+        if (data == keys[0]):
+            pass
+        elif (data == keys[1]):
+            pass
+        elif (data == keys[2]):
+            pass
+        elif (data == keys[3]):
+            pass
         print(data)
 
     def say_something(self, last_update, time):

@@ -37,7 +37,7 @@ def main():
         last_update = greet_bot.get_last_update()
         time = get_time()
         if(last_update):
-            # !!! BAD IF PHOTO AND TEXT
+            # !!! BAD IF PHOTO AND TEXT TO DO
             last_update_id = last_update['update_id']
             # If Update is MEASSAGE
             if (last_update.get('message')):
