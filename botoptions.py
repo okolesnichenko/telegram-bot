@@ -30,8 +30,8 @@ class BotOptions:
         # Here is switch callback (1: hello, 2: registratiom, 3:rules, 4:about us)
         keys = ('hello', 'registration', 'rules', 'about')
         data = last_update['callback_query']['data']
-        last_chat_id = last_update['message']['chat']['id']
-        last_chat_name = last_update['message']['chat']['first_name']
+        last_chat_id = last_update['callback_query']['chat']['id']
+        last_chat_name = last_update['callback_query']['chat']['first_name']
         # This is bad TO DO
         if (data == keys[0]):
             self.greet_bot.send_message(last_chat_id, "Hello {}, my friend. Let's play!".format(last_chat_name))
