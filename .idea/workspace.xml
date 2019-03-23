@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd9636f8-83c5-42da-8cca-f8101ed3cebe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/botoptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/botoptions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tbot.py" beforeDir="false" afterPath="$PROJECT_DIR$/tbot.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -13,20 +12,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/botoptions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="570">
-              <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+            <state relative-caret-position="399">
+              <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tbot.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="591">
-              <caret line="48" selection-start-line="48" selection-end-line="48" />
+              <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -54,8 +53,8 @@
         <option value="$PROJECT_DIR$/../../../snakeGame/snake.py" />
         <option value="$PROJECT_DIR$/dboperations.py" />
         <option value="$PROJECT_DIR$/bothandler.py" />
-        <option value="$PROJECT_DIR$/tbot.py" />
         <option value="$PROJECT_DIR$/botoptions.py" />
+        <option value="$PROJECT_DIR$/tbot.py" />
       </list>
     </option>
   </component>
@@ -160,13 +159,6 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../../../snakeGame/snake.py" />
-    <entry file="file://$PROJECT_DIR$/dboperations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bothandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="874">
@@ -177,20 +169,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tbot.py">
+    <entry file="file://$PROJECT_DIR$/dboperations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="48" selection-start-line="48" selection-end-line="48" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="152">
+          <caret line="8" column="36" selection-start-line="8" selection-start-column="36" selection-end-line="8" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/botoptions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="570">
-          <caret line="30" column="18" selection-start-line="30" selection-start-column="18" selection-end-line="30" selection-end-column="18" />
+        <state relative-caret-position="399">
+          <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tbot.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="591">
+          <caret line="48" column="45" selection-start-line="48" selection-start-column="45" selection-end-line="48" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

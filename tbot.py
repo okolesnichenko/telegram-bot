@@ -46,7 +46,7 @@ def main():
                 data = bot.get_photo_and_data(last_update)
                 db.add_user(data)
             if (last_update.get('callback_query').get('data')):
-
+                bot.menu_switcher(last_update)
 
             new_offset = last_update_id + 1
     cur.close()
