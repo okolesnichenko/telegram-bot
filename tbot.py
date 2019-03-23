@@ -37,17 +37,21 @@ def main():
         last_update = greet_bot.get_last_update()
         time = get_time()
         if(last_update):
+            # !!! BAD IF PHOTO AND TEXT
             last_update_id = last_update['update_id']
-            # If message type is text ->
-            if (last_update.get('message').get('text')):
-                bot.say_something(last_update, time)
-            # If message type is photo (file) ->
-            if (last_update.get('message').get('photo')):
-                data = bot.get_photo_and_data(last_update)
-                db.add_user(data)
+            # If Update is MEASSAGE
+            if (last_update.get('message')):
+                if(last_update.get('message').get('text')):
+                    # If message type is text ->
+                    bot.say_something(last_update, time)
+                elif (last_update.get('message').get('photo'))
+                    # If message type is photo (file) ->
+                    data = bot.get_photo_and_data(last_update)
+                    db.add_user(data)
+            # If update is CALLBACK
             if (last_update.get('callback_query')):
-                bot.menu_switcher(last_update)
-
+                if(last_update.get('callback_query').get('data')):
+                    bot.menu_switcher(last_update)
             new_offset = last_update_id + 1
     cur.close()
     conn.close()
