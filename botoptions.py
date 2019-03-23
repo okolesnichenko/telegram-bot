@@ -29,7 +29,7 @@ class BotOptions:
 
     def menu_switcher(self, last_update):
         # Here is switch callback (1: hello, 2: registratiom, 3:rules, 4:about us)
-        keys = ('hello', 'registration', 'rules', 'about')
+        keys = ('hello', 'registration', 'rules', 'about', 'male', 'female')
         data = last_update['callback_query']['data']
         last_chat_id = last_update['callback_query']['message']['chat']['id']
         last_chat_name = last_update['callback_query']['message']['chat']['first_name']
@@ -43,6 +43,10 @@ class BotOptions:
         elif (data == keys[3]):
             self.greet_bot.send_message(last_chat_id, "I am junior python developer. "
                                                       "Here is my application. You are welcome {}.".format(last_chat_name))
+        elif (data == keys[4]):
+            print("You are male")
+        elif (data == keys[5]):
+            print("You are female")
         print(data)
 
     def say_something(self, last_update, time):
@@ -53,10 +57,11 @@ class BotOptions:
         # Type "hi"
         if last_chat_text.lower() in hi_text:
             # Send buttons
-            self.greet_bot.send_message_with_buttons(last_chat_id, "Hello {}, make a choice:".format(last_chat_name))
+            self.greet_bot.send_message_with_menu_buttons(last_chat_id, "Hello {}, make a choice:".format(last_chat_name))
         # Type "registration"
         if last_chat_text.lower() in reg_text:
-            self.greet_bot.send_message(last_chat_id, "Send photo")
+            self.greet_bot.send_message_with_sex_butons(last_chat_id, "Choose sex:")
+            self.greet_bot.send_message(last_chat_id, "And after it send photo")
             # Wait photo!
             # TO DO
         return last_update_id

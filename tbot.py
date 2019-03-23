@@ -13,7 +13,8 @@ Server: heroku
 
 1. create a menu
 2. add menu functions
-3. implement the functions of the game "badoosimulation"
+3. add right version of registration (lets add 'sex' of person)
+4. implement the functions of the game "badoosimulation"
 
 Need to do "TO DO" - 5
 '''
