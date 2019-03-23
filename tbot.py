@@ -40,12 +40,12 @@ def main():
             last_update_id = last_update['update_id']
             # If message type is text ->
             if (last_update.get('message').get('text')):
-                bot.say_something(last_update, photoIdList, time)
+                bot.say_something(last_update, time)
             # If message type is photo (file) ->
             if (last_update.get('message').get('photo')):
                 data = bot.get_photo_and_data(last_update)
                 db.add_user(data)
-            if (last_update.get('callback_query').get('data')):
+            if (last_update.get('callback_query')['data']):
                 bot.menu_switcher(last_update)
 
             new_offset = last_update_id + 1

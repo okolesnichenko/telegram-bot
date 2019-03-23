@@ -30,7 +30,7 @@ class BotOptions:
         data = last_update['callback_query']['data']
         print(data)
 
-    def say_something(self, last_update, photoIdList, time):
+    def say_something(self, last_update, time):
         last_update_id = last_update['update_id']
         last_chat_text = last_update['message']['text']
         last_chat_id = last_update['message']['chat']['id']
