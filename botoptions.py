@@ -37,7 +37,8 @@ class BotOptions:
         if (data == keys[0]):
             self.greet_bot.send_message(last_chat_id, "Hello {}, my friend. Let's play!".format(last_chat_name))
         elif (data == keys[1]):
-            self.greet_bot.send_message(last_chat_id, "Send photo")
+            self.greet_bot.send_message_with_sex_butons(last_chat_id, "Choose sex:")
+            self.greet_bot.send_message(last_chat_id, "And after it send photo")
         elif (data == keys[2]):
             self.greet_bot.send_message(last_chat_id, "Please don't spam to this bot".format(last_chat_name))
         elif (data == keys[3]):
