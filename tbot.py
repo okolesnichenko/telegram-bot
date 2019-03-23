@@ -37,7 +37,6 @@ def main():
         last_update = greet_bot.get_last_update()
         time = get_time()
         if(last_update):
-            print(last_update)
             last_update_id = last_update['update_id']
             # If message type is text ->
             if (last_update.get('message').get('text')):
@@ -46,6 +45,8 @@ def main():
             if (last_update.get('message').get('photo')):
                 data = bot.get_photo_and_data(last_update)
                 db.add_user(data)
+            if (last_update.get('callback_query').get('data')):
+
 
             new_offset = last_update_id + 1
     cur.close()

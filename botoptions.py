@@ -26,6 +26,10 @@ class BotOptions:
         data = {'username': last_chat_username, 'name': last_chat_name, 'photo': last_photo_id}
         return data
 
+    def menu_switcher(self, last_update):
+        data = last_update['callback_query']['data']
+        print(data)
+
     def say_something(self, last_update, photoIdList, time):
         last_update_id = last_update['update_id']
         last_chat_text = last_update['message']['text']
