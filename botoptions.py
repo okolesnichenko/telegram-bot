@@ -10,7 +10,8 @@ class BotOptions:
         self.greet_bot = greet_bot
         self.database = db
 
-    # Delete after reg realisation TO DO
+    # Delete after reg realisation TO DO (1)
+    # And add try exept everywhere TO DO (2)
     def get_user_data(self, last_update):
         last_chat_name = last_update['message']['chat']['first_name']
         last_chat_username = last_update['message']['chat']['username']
@@ -30,9 +31,9 @@ class BotOptions:
         # Here is switch callback (1: hello, 2: registratiom, 3:rules, 4:about us)
         keys = ('hello', 'registration', 'rules', 'about')
         data = last_update['callback_query']['data']
-        last_chat_id = last_update['callback_query']['chat']['id']
-        last_chat_name = last_update['callback_query']['chat']['first_name']
-        # This is bad TO DO
+        last_chat_id = last_update['callback_query']['message']['chat']['id']
+        last_chat_name = last_update['callback_query']['message']['chat']['first_name']
+        # This is bad TO DO (3)
         if (data == keys[0]):
             self.greet_bot.send_message(last_chat_id, "Hello {}, my friend. Let's play!".format(last_chat_name))
         elif (data == keys[1]):
