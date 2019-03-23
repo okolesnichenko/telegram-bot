@@ -43,7 +43,8 @@ class BotHandler:
         # Old method, later i will change it TO DO
         buttons = json.dumps({'inline_keyboard': [[{'text': 'Hello', 'callback_data': '1'},
                                                    {'text':'Registration', 'callback_data': '2'},
-                                                   {'text': 'Rules'}, {'text':'About us'}]]})
+                                                   {'text': 'Rules', 'callback_data': '1'},
+                                                   {'text':'About us', 'callback_data': '1'}]]})
         params = {'chat_id':chat, 'text':text, 'reply_markup':buttons}
         method = 'sendMessage'
         response = requests.post(self.api_url + method, data=params)
