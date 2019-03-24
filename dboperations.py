@@ -18,7 +18,9 @@ class DataBaseOperations():
             tdata = tuple(data.values())
             try:
                 print(tdata)
-                self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata)
+                #self.cursor.execute("INSERT INTO modeltest(username, name, photo) VALUES(%s, %s, %s)", tdata)
+                self.cursor.execute("INSERT INTO model(username, name, sex, photo, description) "
+                                    "VALUES(%s, %s, %s, %s, %s)", tdata)
                 self.conn.commit()
             except (Exception, psycopg2.Error) as error:
                 print("Postgres Error in add_user()")
