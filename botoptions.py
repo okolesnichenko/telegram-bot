@@ -22,15 +22,10 @@ class BotOptions:
         self.greet_bot = greet_bot
         self.database = db
 
-    # Delete after reg realisation TO DO (1)
     # And add try exept everywhere TO DO (2)
-    def get_user_data(self, last_update):
-        last_chat_name = last_update['message']['chat']['first_name']
-        last_chat_username = last_update['message']['chat']['username']
-        # Необходимо поулчить file_id от отправленной фото
-        # и передать его для добавления в бд
-        data = {'username':last_chat_username, 'name':last_chat_name, 'photo':''}
-        return data
+    def game(self):
+        data = self.database.get_users()
+        print(data)
 
     def get_photo_and_data(self, last_update):
         last_chat_name = last_update['message']['chat']['first_name']
@@ -47,7 +42,6 @@ class BotOptions:
                 return user
         return None
 
-
     def menu_switcher(self, last_update):
         # Here is switch callback (1: hello, 2: registratiom, 3:rules, 4:about us)
         userdata = {'username': '', 'name': '', 'sex': '', 'photo': '', 'description':''}
@@ -59,6 +53,7 @@ class BotOptions:
         # This is bad TO DO (3)
         if (data == keys[0]):
             self.greet_bot.send_message(last_chat_id, "Hello {}, my friend. Let's play!".format(last_chat_name))
+            self.game()
         elif (data == keys[1]):
             userdata['username'] = last_chat_username
             users_list.append(userdata)

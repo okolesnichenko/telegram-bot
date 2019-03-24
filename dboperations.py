@@ -36,3 +36,12 @@ class DataBaseOperations():
         except (Exception, psycopg2.Error) as error:
             print("Postgres Error raw = self.cursor.fetchall()")
             print(error)
+
+    def get_users(self):
+        try:
+            self.cursor.execute("SELECT * FROM users")
+            raw = self.cursor.fetchall()
+            return raw
+        except (Exception, psycopg2.Error) as error:
+            print("Postgres Error raw = self.cursor.fetchall()")
+            print(error)

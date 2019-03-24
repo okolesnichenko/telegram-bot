@@ -13,11 +13,14 @@ Server: heroku
 
 1. create a menu +
 2. add menu functions +
-3. add right version of registration (lets add 'sex' of person in database)
-4. i want to get description from photo
-5. 
+3. add right version of registration (lets add 'sex' of person in database)+
+4. i want to get description from photo+
+5. add game method (instead hello func)
+6. create game logic
+7. add more users
+8. test test test
 
-Need to do "TO DO" - 4
+Need to do "TO DO" - 3
 '''
 
 def get_time():
