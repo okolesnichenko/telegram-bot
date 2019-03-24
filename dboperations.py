@@ -7,6 +7,8 @@ class DataBaseOperations():
             self.cursor = self.conn.cursor()
             self.cursor.execute("CREATE TABLE IF NOT EXISTS modeltest"
                                 "(username varchar PRIMARY KEY, name varchar,  photo varchar)")
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS model (username varchar PRIMARY KEY,"
+                                "name varchar, sex varchar, photo varchar, description varchar")
         except (Exception, psycopg2.Error) as error:
             print("Error while connecting to PostgreSQL", error)
     # Add user to db

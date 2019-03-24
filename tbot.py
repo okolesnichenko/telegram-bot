@@ -11,10 +11,11 @@ Project: Telegram Bot
 Language: Python
 Server: heroku
 
-1. create a menu
-2. add menu functions
-3. add right version of registration (lets add 'sex' of person)
+1. create a menu +
+2. add menu functions +
+3. add right version of registration (lets add 'sex' of person in database)
 4. implement the functions of the game "badoosimulation"
+5. 
 
 Need to do "TO DO" - 5
 '''

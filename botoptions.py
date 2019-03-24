@@ -3,7 +3,7 @@ import random
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
 reg_text = ("регистрация", "зарегестрироваться", "рег", "registration")
-
+userdata = {'username': '', 'name': '', 'sex': '', 'photo': '', 'description':''}
 
 class BotOptions:
     def __init__(self, greet_bot, db):
@@ -24,11 +24,13 @@ class BotOptions:
         last_chat_name = last_update['message']['chat']['first_name']
         last_chat_username = last_update['message']['chat']['username']
         last_photo_id = last_update['message']['photo'][0]['file_id']
-        data = {'username': last_chat_username, 'name': last_chat_name, 'photo': last_photo_id}
-        return data
+        userdata = {'username': last_chat_username, 'name': last_chat_name, 'sex': '', 'photo': last_photo_id,
+                'description':''}
+        return userdata
 
     def menu_switcher(self, last_update):
         # Here is switch callback (1: hello, 2: registratiom, 3:rules, 4:about us)
+        userdata = {'username': '', 'name': '', 'sex': '', 'photo': '', 'description':''}
         keys = ('hello', 'registration', 'rules', 'about', 'male', 'female')
         data = last_update['callback_query']['data']
         last_chat_id = last_update['callback_query']['message']['chat']['id']
@@ -39,15 +41,18 @@ class BotOptions:
         elif (data == keys[1]):
             self.greet_bot.send_message_with_sex_buttons(last_chat_id, "Choose sex:")
             self.greet_bot.send_message(last_chat_id, "And after it send photo")
+            # need to add decription
         elif (data == keys[2]):
             self.greet_bot.send_message(last_chat_id, "Please don't spam to this bot".format(last_chat_name))
         elif (data == keys[3]):
             self.greet_bot.send_message(last_chat_id, "I am junior python developer. "
                                                       "Here is my application. You are welcome {}.".format(last_chat_name))
         elif (data == keys[4]):
-            print("You are male")
+            userdata['sex'] = keys[4]
+            self.greet_bot.send_message(last_chat_id, "Send photo for profile in game:")
         elif (data == keys[5]):
-            print("You are female")
+            userdata['sex'] = keys[5]
+            self.greet_bot.send_message(last_chat_id, "Send photo for profile in game:")
         print(data)
 
     def say_something(self, last_update, time):
