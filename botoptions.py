@@ -4,6 +4,18 @@ hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
 reg_text = ("регистрация", "зарегестрироваться", "рег", "registration")
 userdata = {'username': '', 'name': '', 'sex': '', 'photo': '', 'description':''}
+users_list = [{}]
+
+''' 
+1) i can create list of userdata
+add userdata with username and after it add next info about this user
+
+or
+2) i need asynk io 
+
+
+now i will do first
+'''
 
 class BotOptions:
     def __init__(self, greet_bot, db):
@@ -24,8 +36,11 @@ class BotOptions:
         last_chat_name = last_update['message']['chat']['first_name']
         last_chat_username = last_update['message']['chat']['username']
         last_photo_id = last_update['message']['photo'][0]['file_id']
-        userdata = {'username': last_chat_username, 'name': last_chat_name, 'sex': '', 'photo': last_photo_id,
-                'description':''}
+
+        userdata['username'] = last_chat_username
+        userdata['name'] = last_chat_name
+        #userdata['sex'] -> in menu switcher
+        userdata['photo'] = last_photo_id
         return userdata
 
     def menu_switcher(self, last_update):
@@ -35,23 +50,28 @@ class BotOptions:
         data = last_update['callback_query']['data']
         last_chat_id = last_update['callback_query']['message']['chat']['id']
         last_chat_name = last_update['callback_query']['message']['chat']['first_name']
+        last_chat_username = last_update['callback_query']['message']['chat']['username']
         # This is bad TO DO (3)
         if (data == keys[0]):
             self.greet_bot.send_message(last_chat_id, "Hello {}, my friend. Let's play!".format(last_chat_name))
         elif (data == keys[1]):
+            userdata['username'] = last_chat_username
+            users_list.append(userdata)
             self.greet_bot.send_message_with_sex_buttons(last_chat_id, "Choose sex:")
-            self.greet_bot.send_message(last_chat_id, "And after it send photo")
-            # need to add decription
         elif (data == keys[2]):
-            self.greet_bot.send_message(last_chat_id, "Please don't spam to this bot".format(last_chat_name))
+            self.greet_bot.send_message(last_chat_id, "Please don't spam to this bot. Thank you.".format(last_chat_name))
         elif (data == keys[3]):
             self.greet_bot.send_message(last_chat_id, "I am junior python developer. "
                                                       "Here is my application. You are welcome {}.".format(last_chat_name))
         elif (data == keys[4]):
-            userdata['sex'] = keys[4]
+            for user in users_list:
+                if (user.get(last_chat_username)):
+                    user['sex'] = keys[4]
             self.greet_bot.send_message(last_chat_id, "Send photo for profile in game:")
         elif (data == keys[5]):
-            userdata['sex'] = keys[5]
+            for user in users_list:
+                if (user.get(last_chat_username)):
+                    user['sex'] = keys[5]
             self.greet_bot.send_message(last_chat_id, "Send photo for profile in game:")
         print(data)
 
