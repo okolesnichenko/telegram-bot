@@ -5,6 +5,7 @@ class DataBaseOperations():
         try:
             self.conn = psycopg2.connect(DATABASE_URL, sslmode='require')
             self.cursor = self.conn.cursor()
+            self.conn.autocommit = True
             #self.cursor.execute("CREATE TABLE IF NOT EXISTS users"
             #                    "(username varchar PRIMARY KEY, name varchar,  photo varchar)")
             #self.cursor.execute("CREATE TABLE IF NOT EXISTS model (username varchar PRIMARY KEY,"
