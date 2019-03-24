@@ -36,6 +36,8 @@ class BotOptions:
         last_chat_name = last_update['message']['chat']['first_name']
         last_chat_username = last_update['message']['chat']['username']
         last_photo_id = last_update['message']['photo'][0]['file_id']
+        print("User list", users_list)
+        print("LCU", last_chat_username)
         for user in users_list:
             if (user.get(last_chat_username)):
                 user['username'] = last_chat_username
