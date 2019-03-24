@@ -28,7 +28,7 @@ class DataBaseOperations():
     # Сheck username in db
     def check_user(self, username):
         try:
-            self.cursor.execute("SELECT * FROM modeltest")
+            self.cursor.execute("SELECT * FROM users")
             raw = self.cursor.fetchall()
             for user in raw:
                 if (user[0] == username):
