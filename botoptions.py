@@ -23,11 +23,12 @@ class BotOptions:
         self.database = db
 
     # And add try exept everywhere TO DO (2)
+    # 0 - username, 1 - name, 2 - sex, 3 - photo, 4 - decription
     def game(self, last_update):
         last_chat_id = last_update['callback_query']['message']['chat']['id']
         data = self.database.get_users()
         for user in data:
-            self.greet_bot.send_photo_with_caption(last_chat_id, user.get('photo'), user.get('description'))
+            self.greet_bot.send_photo_with_caption(last_chat_id, user[3], user[4])
         print(data)
 
     def get_photo_and_data(self, last_update):

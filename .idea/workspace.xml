@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd9636f8-83c5-42da-8cca-f8101ed3cebe" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/bothandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/bothandler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/botoptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/botoptions.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,8 +39,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botoptions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="380">
-              <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+            <state relative-caret-position="399">
+              <caret line="30" column="80" selection-start-line="30" selection-start-column="80" selection-end-line="30" selection-end-column="80" />
             </state>
           </provider>
         </entry>
@@ -48,7 +48,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/dboperations.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="722">
+            <state relative-caret-position="779">
               <caret line="44" column="52" lean-forward="true" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
             </state>
           </provider>
@@ -65,8 +65,8 @@
         <option value="$PROJECT_DIR$/../../../snakeGame/snake.py" />
         <option value="$PROJECT_DIR$/tbot.py" />
         <option value="$PROJECT_DIR$/dboperations.py" />
-        <option value="$PROJECT_DIR$/botoptions.py" />
         <option value="$PROJECT_DIR$/bothandler.py" />
+        <option value="$PROJECT_DIR$/botoptions.py" />
       </list>
     </option>
   </component>
@@ -181,13 +181,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/dboperations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="722">
-          <caret line="44" column="52" lean-forward="true" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bothandler.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="437">
@@ -198,10 +191,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/dboperations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="779">
+          <caret line="44" column="52" lean-forward="true" selection-start-line="44" selection-start-column="52" selection-end-line="44" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/botoptions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="29" column="42" selection-start-line="29" selection-start-column="42" selection-end-line="29" selection-end-column="42" />
+        <state relative-caret-position="399">
+          <caret line="30" column="80" selection-start-line="30" selection-start-column="80" selection-end-line="30" selection-end-column="80" />
         </state>
       </provider>
     </entry>
