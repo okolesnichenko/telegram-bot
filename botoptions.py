@@ -36,12 +36,15 @@ class BotOptions:
         last_chat_name = last_update['message']['chat']['first_name']
         last_chat_username = last_update['message']['chat']['username']
         last_photo_id = last_update['message']['photo'][0]['file_id']
+        for user in users_list:
+            if (user.get(last_chat_username)):
+                user['username'] = last_chat_username
+                user['name'] = last_chat_name
+                #user['sex'] -> in menu switcher
+                user['photo'] = last_photo_id
+                return user
+        return None
 
-        userdata['username'] = last_chat_username
-        userdata['name'] = last_chat_name
-        #userdata['sex'] -> in menu switcher
-        userdata['photo'] = last_photo_id
-        return userdata
 
     def menu_switcher(self, last_update):
         # Here is switch callback (1: hello, 2: registratiom, 3:rules, 4:about us)

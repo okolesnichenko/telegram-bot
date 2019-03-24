@@ -51,7 +51,8 @@ def main():
                 elif (last_update.get('message').get('photo')):
                     # If message type is photo (file) ->
                     data = bot.get_photo_and_data(last_update)
-                    db.add_user(data)
+                    if (data):
+                        db.add_user(data)
             # If update is CALLBACK
             if (last_update.get('callback_query')):
                 if(last_update.get('callback_query').get('data')):
