@@ -14,10 +14,10 @@ Server: heroku
 1. create a menu +
 2. add menu functions +
 3. add right version of registration (lets add 'sex' of person in database)
-4. implement the functions of the game "badoosimulation"
+4. i want to get description from photo
 5. 
 
-Need to do "TO DO" - 5
+Need to do "TO DO" - 4
 '''
 
 def get_time():
@@ -41,7 +41,6 @@ def main():
         last_update = greet_bot.get_last_update()
         time = get_time()
         if(last_update):
-            # !!! BAD IF PHOTO AND TEXT TO DO (5)
             last_update_id = last_update['update_id']
             # If Update is MEASSAGE
             if (last_update.get('message')):

@@ -36,14 +36,14 @@ class BotOptions:
         last_chat_name = last_update['message']['chat']['first_name']
         last_chat_username = last_update['message']['chat']['username']
         last_photo_id = last_update['message']['photo'][0]['file_id']
-        print("User list", users_list)
-        print("LCU", last_chat_username)
+        last_photo_caption = last_update.get('caption')
         for user in users_list:
             if (user.get('username')==last_chat_username):
                 user['username'] = last_chat_username
                 user['name'] = last_chat_name
                 #user['sex'] -> in menu switcher
                 user['photo'] = last_photo_id
+                user['description'] = last_photo_caption
                 return user
         return None
 
@@ -72,12 +72,14 @@ class BotOptions:
             for user in users_list:
                 if (user.get('username')==last_chat_username):
                     user['sex'] = keys[4]
-            self.greet_bot.send_message(last_chat_id, "Send photo for profile in game:")
+            self.greet_bot.send_message(last_chat_id, "Send photo for profile in game "
+                                                      "and add the caption(your description - briefly about yourself):")
         elif (data == keys[5]):
             for user in users_list:
                 if (user.get('username')==last_chat_username):
                     user['sex'] = keys[5]
-            self.greet_bot.send_message(last_chat_id, "Send photo for profile in game:")
+            self.greet_bot.send_message(last_chat_id, "Send photo for profile in game "
+                                                      "and add the caption(your description - briefly about yourself):")
         print(data)
 
     def say_something(self, last_update, time):
