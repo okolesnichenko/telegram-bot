@@ -39,7 +39,7 @@ class BotOptions:
         print("User list", users_list)
         print("LCU", last_chat_username)
         for user in users_list:
-            if (user.get(last_chat_username)):
+            if (user.get('username')==last_chat_username):
                 user['username'] = last_chat_username
                 user['name'] = last_chat_name
                 #user['sex'] -> in menu switcher
@@ -70,12 +70,12 @@ class BotOptions:
                                                       "Here is my application. You are welcome {}.".format(last_chat_name))
         elif (data == keys[4]):
             for user in users_list:
-                if (user.get(last_chat_username)):
+                if (user.get('username')==last_chat_username):
                     user['sex'] = keys[4]
             self.greet_bot.send_message(last_chat_id, "Send photo for profile in game:")
         elif (data == keys[5]):
             for user in users_list:
-                if (user.get(last_chat_username)):
+                if (user.get('username')==last_chat_username):
                     user['sex'] = keys[5]
             self.greet_bot.send_message(last_chat_id, "Send photo for profile in game:")
         print(data)
