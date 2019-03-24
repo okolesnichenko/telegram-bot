@@ -2,9 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd9636f8-83c5-42da-8cca-f8101ed3cebe" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/bothandler.py" beforeDir="false" afterPath="$PROJECT_DIR$/bothandler.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/botoptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/botoptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dboperations.py" beforeDir="false" afterPath="$PROJECT_DIR$/dboperations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tbot.py" beforeDir="false" afterPath="$PROJECT_DIR$/tbot.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -17,8 +16,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bothandler.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="36" column="50" lean-forward="true" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+            <state relative-caret-position="513">
+              <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -41,8 +40,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/botoptions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="55" column="23" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
+            <state relative-caret-position="171">
+              <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
             </state>
           </provider>
         </entry>
@@ -65,9 +64,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/../../../snakeGame/snake.py" />
-        <option value="$PROJECT_DIR$/bothandler.py" />
         <option value="$PROJECT_DIR$/tbot.py" />
         <option value="$PROJECT_DIR$/dboperations.py" />
+        <option value="$PROJECT_DIR$/bothandler.py" />
         <option value="$PROJECT_DIR$/botoptions.py" />
       </list>
     </option>
@@ -173,20 +172,20 @@
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/../../../snakeGame/snake.py" />
-    <entry file="file://$PROJECT_DIR$/bothandler.py">
+    <entry file="file://$PROJECT_DIR$/tbot.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="36" column="50" lean-forward="true" selection-start-line="36" selection-start-column="50" selection-end-line="36" selection-end-column="50" />
+        <state relative-caret-position="190">
+          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tbot.py">
+    <entry file="file://$PROJECT_DIR$/bothandler.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="22" column="22" selection-start-line="22" selection-start-column="22" selection-end-line="22" selection-end-column="22" />
+        <state relative-caret-position="513">
+          <caret line="45" column="23" selection-start-line="45" selection-start-column="23" selection-end-line="45" selection-end-column="23" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
@@ -202,8 +201,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/botoptions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="55" column="23" selection-start-line="55" selection-start-column="23" selection-end-line="55" selection-end-column="23" />
+        <state relative-caret-position="171">
+          <caret line="30" column="19" lean-forward="true" selection-start-line="30" selection-start-column="19" selection-end-line="30" selection-end-column="19" />
         </state>
       </provider>
     </entry>

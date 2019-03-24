@@ -23,8 +23,11 @@ class BotOptions:
         self.database = db
 
     # And add try exept everywhere TO DO (2)
-    def game(self):
+    def game(self, last_update):
+        last_chat_id = last_update['message']['chat']['id']
         data = self.database.get_users()
+        for user in data:
+            self.greet_bot.send_photo_with_caption(last_chat_id, user.get('photo'), user.get('description'))
         print(data)
 
     def get_photo_and_data(self, last_update):
@@ -53,7 +56,7 @@ class BotOptions:
         # This is bad TO DO (3)
         if (data == keys[0]):
             self.greet_bot.send_message(last_chat_id, "Hello {}, my friend. Let's play!".format(last_chat_name))
-            self.game()
+            self.game(last_update)
         elif (data == keys[1]):
             userdata['username'] = last_chat_username
             users_list.append(userdata)

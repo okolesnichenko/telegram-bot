@@ -39,6 +39,12 @@ class BotHandler:
         response = requests.post(self.api_url + method, data=params)
         return response
 
+    def sned_photo_with_caption(self, chat, photo, caption):
+        params = {'chat_id':chat, 'photo':photo, 'caption':caption}
+        method = 'sendPhoto'
+        response = requests.post(self.api_url + method, data=params)
+        return response
+
     def send_message_with_menu_buttons(self, chat, text):
         # Old method, later i will change it TO DO (4)
         buttons = json.dumps({'inline_keyboard': [[{'text': 'Hello', 'callback_data': 'hello'},
