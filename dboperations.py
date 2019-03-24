@@ -23,7 +23,7 @@ class DataBaseOperations():
                                     "VALUES(%s, %s, %s, %s, %s)", tdata)
                 self.conn.commit()
             except (Exception, psycopg2.Error) as error:
-                print("Postgres Error in add_user()")
+                print("Postgres Error in add_user()", error)
     # Сheck username in db
     def check_user(self, username):
         try:
