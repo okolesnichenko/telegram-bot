@@ -23,19 +23,21 @@ class BotOptions:
         self.database = db
 
     # And add try exept everywhere TO DO (2)
-    # 0 - username, 1 - name, 2 - sex, 3 - photo, 4 - decription
+    # user[0] - username, user[1] - name, user[2] - sex, user[3] - photo, user[4] - desription
     def game(self, last_update):
+        # If not registred -> send message about it!
         last_chat_id = last_update['callback_query']['message']['chat']['id']
         last_chat_name = last_update['callback_query']['message']['chat']['first_name']
         last_chat_username = last_update['callback_query']['message']['chat']['username']
         data = self.database.get_users()
-        # TO DO set another sex
-        # user[0] - username, user[1] - name, user[2] - sex, user[3] - photo, user[4] - desription
+        # TO DO set another sex (3)
+        # TO DO to change it like -> t[t.index('b')] (4)
         for user in data:
             if (user[0] == last_chat_username):
                 sex = user[2]
+        # -> FINISH THIS PART
         user = random.choice(data)
-        self.greet_bot.send_user_photo(last_chat_id, user[3], user[4], last_chat_name)
+        self.greet_bot.send_user_photo(last_chat_id, user[3], user[4], user[1])
         return data
 
     def get_photo_and_data(self, last_update):
@@ -87,6 +89,7 @@ class BotOptions:
             self.greet_bot.send_message(last_chat_id, "Send photo for profile in game "
                                                       "and add the caption(your description - briefly about yourself):")
         elif (data == keys[6]):
+            # neet to get more telegram accounts, and after i'll make gameplay
             pass
         elif (data == keys[7]):
             self.game(last_update)
