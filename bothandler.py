@@ -56,7 +56,7 @@ class BotHandler:
 
     def send_message_with_menu_buttons(self, chat, text):
         # Old method, later i will change it TO DO (4)
-        buttons = json.dumps({'inline_keyboard': [[{'text': 'Hello', 'callback_data': 'hello'},
+        buttons = json.dumps({'inline_keyboard': [[{'text': 'Game', 'callback_data': 'game'},
                                                    {'text':'Registration', 'callback_data': 'registration'},
                                                    {'text': 'Rules', 'callback_data': 'rules'},
                                                    {'text':'About us', 'callback_data': 'about'}]]})

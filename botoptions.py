@@ -27,7 +27,12 @@ class BotOptions:
     def game(self, last_update):
         last_chat_id = last_update['callback_query']['message']['chat']['id']
         last_chat_name = last_update['callback_query']['message']['chat']['first_name']
+        last_chat_username = last_update['callback_query']['message']['chat']['username']
         data = self.database.get_users()
+        # TO DO set another sex
+        for user in data:
+            if (user.get('username') == last_chat_username):
+                sex = user['sex']
         user = random.choice(data)
         self.greet_bot.send_user_photo(last_chat_id, user[3], user[4], last_chat_name)
         return data
@@ -50,7 +55,7 @@ class BotOptions:
     def menu_switcher(self, last_update):
         # Here is switch callback (1: hello, 2: registratiom, 3:rules, 4:about us)
         userdata = {'username': '', 'name': '', 'sex': '', 'photo': '', 'description':''}
-        keys = ('hello', 'registration', 'rules', 'about', 'male', 'female')
+        keys = ('game', 'registration', 'rules', 'about', 'male', 'female', 'like', 'next')
         data = last_update['callback_query']['data']
         last_chat_id = last_update['callback_query']['message']['chat']['id']
         last_chat_name = last_update['callback_query']['message']['chat']['first_name']
@@ -80,6 +85,10 @@ class BotOptions:
                     user['sex'] = keys[5]
             self.greet_bot.send_message(last_chat_id, "Send photo for profile in game "
                                                       "and add the caption(your description - briefly about yourself):")
+        elif (data == keys[6]):
+            pass
+        elif (data == keys[7]):
+            self.game(last_update)
         print(data)
 
     def say_something(self, last_update, time):
