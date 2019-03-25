@@ -26,10 +26,11 @@ class BotOptions:
     # 0 - username, 1 - name, 2 - sex, 3 - photo, 4 - decription
     def game(self, last_update):
         last_chat_id = last_update['callback_query']['message']['chat']['id']
+        last_chat_name = last_update['callback_query']['message']['chat']['first_name']
         data = self.database.get_users()
-        for user in data:
-            self.greet_bot.send_photo_with_caption(last_chat_id, user[3], user[4])
-        print(data)
+        user = random.choice(data)
+        self.greet_bot.send_user_photo(last_chat_id, user[3], user[4], last_chat_name)
+        return data
 
     def get_photo_and_data(self, last_update):
         last_chat_name = last_update['message']['chat']['first_name']
