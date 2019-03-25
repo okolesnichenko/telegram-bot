@@ -30,9 +30,10 @@ class BotOptions:
         last_chat_username = last_update['callback_query']['message']['chat']['username']
         data = self.database.get_users()
         # TO DO set another sex
+        # user[0] - username, user[1] - name, user[2] - sex, user[3] - photo, user[4] - desription
         for user in data:
             if (user[0] == last_chat_username):
-                sex = user['sex']
+                sex = user[2]
         user = random.choice(data)
         self.greet_bot.send_user_photo(last_chat_id, user[3], user[4], last_chat_name)
         return data
