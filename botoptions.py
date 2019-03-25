@@ -31,7 +31,7 @@ class BotOptions:
         data = self.database.get_users()
         # TO DO set another sex
         for user in data:
-            if (user.get('username') == last_chat_username):
+            if (user[0] == last_chat_username):
                 sex = user['sex']
         user = random.choice(data)
         self.greet_bot.send_user_photo(last_chat_id, user[3], user[4], last_chat_name)
@@ -43,7 +43,7 @@ class BotOptions:
         last_photo_id = last_update['message']['photo'][0]['file_id']
         last_photo_caption = last_update['message'].get('caption')
         for user in users_list:
-            if (user[0]==last_chat_username):
+            if (user.get('username')==last_chat_username):
                 user['username'] = last_chat_username
                 user['name'] = last_chat_name
                 #user['sex'] -> in menu switcher
