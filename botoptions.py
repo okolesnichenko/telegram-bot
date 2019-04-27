@@ -67,7 +67,6 @@ class BotOptions:
         print(url)
 
         text = recognize(process.download('file_0.wav'))
-        text = 'a'
         return text
 
 
