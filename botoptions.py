@@ -49,7 +49,7 @@ class BotOptions:
 
     def recognize_audio(self, last_update):
         last_chat_audio = self.greet_bot.get_file_json(last_update['message']['voice']['file_id'])
-        res = self.greet_bot(last_chat_audio['file_path'])
+        res = self.greet_bot.get_file(last_chat_audio['file_path'])
         print(res)
 
 
