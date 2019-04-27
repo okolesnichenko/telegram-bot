@@ -49,6 +49,7 @@ class BotOptions:
 
     def recognize_audio(self, last_update):
         last_chat_audio = self.greet_bot.get_file(last_update['message']['voice']['file_id'])
+        print(last_chat_audio.get('file_path'))
         apikey = 'VTodTciTcRpWfKqMgSCd32fMnXiih1G4P6i5gDl5WtXlUjgWBqV98GKLs2dg8CC4'
         api = cloudconvert.Api(apikey)
         process = api.createProcess({
@@ -56,12 +57,11 @@ class BotOptions:
             "outputformat": "wav"
         })
         usertext = process.start({
-            "input": "upload",
-            "file": last_chat_audio,
+            "input": "download",
+            "file": last_chat_audio.get('file_path'),
             "outputformat": "wav"
         })
-        recognize(usertext)
-
+        #recognize(usertext)
         return usertext
 
     def get_photo_and_data(self, last_update):
