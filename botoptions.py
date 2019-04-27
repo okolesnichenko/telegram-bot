@@ -63,8 +63,9 @@ class BotOptions:
                 "audio_bitrate": 128,
             },
             "save":True,
+            "download":"inline"
         })
-        file = process.download('file_0.wav')
+        file = process.download('outputfile.ext')
         print(file)
         text = recognize(file)
         return text
