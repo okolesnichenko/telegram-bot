@@ -58,7 +58,7 @@ class BotOptions:
         usertext = process.start({
             "input": "download",
             "file": last_chat_audio,
-            "outputformat": "waw",
+            "outputformat": "wav",
             "converteroptions": {
                 "audio_bitrate": 128,
                 "audio_normalize": "+20db"
