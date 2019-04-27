@@ -63,7 +63,7 @@ class BotOptions:
                 "audio_bitrate": 128,
                 "audio_normalize": "+20db"
             },
-            "email":"true"
+            "save":True
         })
         print(url)
 
