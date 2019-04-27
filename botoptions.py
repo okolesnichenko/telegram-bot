@@ -63,9 +63,9 @@ class BotOptions:
                 "audio_bitrate": 128,
             },
             "save":True,
-            "download":True
         })
         print(url)
+        process.download(localfile=file)
         #text = recognize(file)
         text = 'a'
         return text
