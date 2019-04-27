@@ -56,7 +56,8 @@ def main():
                     if (data):
                         db.add_user(data)
                 elif (last_update.get('message').get('voice')):
-                    data =
+                    data = bot.recognize_audio(last_update)
+                    print(data)
             # If update is CALLBACK
             if (last_update.get('callback_query')):
                 if(last_update.get('callback_query').get('data')):
