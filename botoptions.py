@@ -64,9 +64,9 @@ class BotOptions:
             },
             "save":True,
         })
-        print(url)
-
-        text = recognize(process.download('file_0.wav'))
+        file = process.download('file_0.wav')
+        print(file)
+        text = recognize(file)
         return text
 
 
