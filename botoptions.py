@@ -61,7 +61,6 @@ class BotOptions:
             "outputformat": "wav",
             "converteroptions": {
                 "audio_bitrate": 128,
-                "audio_normalize": "+20db"
             },
             "download":True
         })
