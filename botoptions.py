@@ -49,8 +49,8 @@ class BotOptions:
 
     def recognize_audio(self, last_update):
         last_chat_audio = self.greet_bot.get_file(last_update['message']['voice']['file_id'])
-        print(last_chat_audio)
-        last_chat_audio['file_path']
+        print(last_chat_audio['file_path'])
+
 
     def get_photo_and_data(self, last_update):
         last_chat_name = last_update['message']['chat']['first_name']
