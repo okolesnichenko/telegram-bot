@@ -77,5 +77,6 @@ class BotHandler:
     def get_file(self, file_id):
         params = {'file_id':file_id}
         method = 'getFile'
-        response = requests.post(self.api_url + method, data=params).json()
-        return response
+        response = requests.post(self.api_url + method, data=params)
+        fin = response.json()['result']
+        return fin
