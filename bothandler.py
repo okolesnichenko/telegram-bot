@@ -73,3 +73,9 @@ class BotHandler:
         method = 'sendMessage'
         response = requests.post(self.api_url + method, data=params)
         return response
+
+    def get_file(self, file_id):
+        params = {'file_id':file_id}
+        method = 'getFile'
+        response = requests.post(self.api_url + method, data=params)
+        return response
