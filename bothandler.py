@@ -79,6 +79,7 @@ class BotHandler:
         method = 'getFile'
         response = requests.post(self.api_url + method, data=params)
         fin = response.json()['result']
+        print(fin)
         return fin
 
     def get_file(self, file_path):
