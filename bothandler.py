@@ -83,5 +83,5 @@ class BotHandler:
 
     def get_file(self, file_path):
         response = requests.get(self.api_url + file_path)
-        print(self.api_url+file_path)
-        return response
+        url = self.api_url+file_path
+        return url
