@@ -5,6 +5,7 @@ class BotHandler:
     def __init__(self, token):
         self.token = token
         self.api_url = "https://api.telegram.org/bot{}/".format(token)
+        self.api_file_url = "https://api.telegram.org/file/bot{}/".format(token)
 
     def get_updates_json(self, offset=None, timeout=30):
         method = 'getUpdates'
@@ -83,6 +84,6 @@ class BotHandler:
         return fin
 
     def get_file(self, file_path):
-        response = requests.get(self.api_url + file_path)
-        url = self.api_url+file_path
+        response = requests.get(self.api_file_url + file_path)
+        url = self.api_file_url+file_path
         return url
