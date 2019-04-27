@@ -15,9 +15,9 @@ Server: heroku
 2. add menu functions +
 3. add right version of registration (lets add 'sex' of person in database)+
 4. i want to get description from photo+
-5. add game method (instead hello func)
-6. create game logic
-7. add more users
+5. add game method (instead hello func) +
+6. create game logic 
+7. add more users +
 8. test test test
 
 Need to do "TO DO" - 4
@@ -55,6 +55,8 @@ def main():
                     data = bot.get_photo_and_data(last_update)
                     if (data):
                         db.add_user(data)
+                elif (last_update.get('message').get('voice')):
+                    data =
             # If update is CALLBACK
             if (last_update.get('callback_query')):
                 if(last_update.get('callback_query').get('data')):
