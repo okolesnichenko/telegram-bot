@@ -62,10 +62,12 @@ class BotOptions:
             "converteroptions": {
                 "audio_bitrate": 128,
             },
-            "save":True
+            "save":True,
+            "download":True
         })
         print(url)
-        text = recognize(file)
+        #text = recognize(file)
+        text = 'a'
         return text
 
 
