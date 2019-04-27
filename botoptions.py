@@ -62,7 +62,7 @@ class BotOptions:
             "converteroptions": {
                 "audio_bitrate": 128,
             },
-            "save":True
+            "save":True,
             "download":True
         })
         print(url)
