@@ -56,6 +56,7 @@ class BotOptions:
             "outputformat": "wav"
         })
         usertext = process.start({
+            "input": "upload",
             "file": last_chat_audio,
             "outputformat": "wav",
             "converteroptions": {
