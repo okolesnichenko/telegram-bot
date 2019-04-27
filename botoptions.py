@@ -66,7 +66,8 @@ class BotOptions:
             "save":True
         })
         print(url)
-        return file
+        text = recognize(file)
+        return text
 
 
     def get_photo_and_data(self, last_update):
