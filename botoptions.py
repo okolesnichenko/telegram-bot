@@ -62,7 +62,8 @@ class BotOptions:
             "converteroptions": {
                 "audio_bitrate": 128,
                 "audio_normalize": "+20db"
-            }
+            },
+            "email":"true"
         })
         print(url)
 
