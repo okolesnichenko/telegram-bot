@@ -55,7 +55,7 @@ class BotOptions:
             "inputformat": "ogg",
             "outputformat": "wav"
         })
-        process.start({
+        file = process.start({
             "input": "download",
             "file": url,
             "outputformat": "wav",
@@ -66,6 +66,7 @@ class BotOptions:
             "save":True
         })
         print(url)
+        return file
 
 
     def get_photo_and_data(self, last_update):
