@@ -63,7 +63,7 @@ class BotOptions:
                 "audio_bitrate": 128,
                 "audio_normalize": "+20db"
             },
-            "save":True
+            "download":True
         })
         print(url)
         text = recognize(file)
