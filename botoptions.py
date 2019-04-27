@@ -1,5 +1,6 @@
 import random
 from context import recognize
+import soundfile as sf
 
 hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
 time_text = ("сколько время", "время", "дата", "date", "time")
@@ -48,7 +49,9 @@ class BotOptions:
 
     def recognize_audio(self, last_update):
         last_chat_audio = self.greet_bot.get_file(last_update['message']['voice']['file_id'])
-        usertext = recognize(last_chat_audio)
+        data, samplerate = sf.read(last_chat_audio)
+        #usertext = recognize(last_chat_audio)
+        usertext = 'ok'
         return usertext
 
     def get_photo_and_data(self, last_update):
