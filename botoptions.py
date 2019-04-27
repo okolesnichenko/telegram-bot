@@ -48,7 +48,7 @@ class BotOptions:
         return data
 
     def recognize_audio(self, last_update):
-        last_chat_audio = self.greet_bot.get_file(last_update['message']['voice']['file_id']).json()
+        last_chat_audio = self.greet_bot.get_file(last_update['message']['voice']['file_id'])
         print(last_chat_audio)
         last_chat_audio['file_path']
 
