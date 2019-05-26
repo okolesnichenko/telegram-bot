@@ -145,6 +145,7 @@ class BotOptions:
         # Type /a
         if (last_chat_text.lower()[0:2] in show_topics):
             records = self.get_topics()
+            records = set(records)
             for message in records:
                 self.greet_bot.send_message(last_chat_id, message)
         # Type /s
