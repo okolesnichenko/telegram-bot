@@ -55,3 +55,16 @@ class DataBaseOperations():
             self.conn.commit()
         except (Exception, psycopg2.Error) as error:
             print("Postgres Error in add_record()", error)
+
+    def get_records(self, topic):
+        try:
+            self.cursor.execute("SELECT * FROM records")
+            raw = self.cursor.fetchall()
+            records = []
+            for record in raw:
+                if (record[0] == topic):
+                    records.append(record[1])
+            return records
+        except (Exception, psycopg2.Error) as error:
+            print("Postgres Error raw = self.cursor.fetchall()")
+            return None

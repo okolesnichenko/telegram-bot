@@ -2,6 +2,7 @@ import random
 from context import recognize
 import cloudconvert
 
+show_text = ("/s ", "!s ")
 topic_text = ("!t ", "/t ", "t  ", ".t ")
 game_text = ("игра", "game", "играть", "play")
 time_text = ("сколько время", "время", "дата", "date", "time")
@@ -127,11 +128,21 @@ class BotOptions:
     def save_record(self, topic, last_chat_text):
         self.database.add_record(topic, last_chat_text)
 
+    def get_records_by_topic(self, topic):
+        records = self.database.get_records(topic)
+        return records
+
     def say_something(self, last_update):
         last_update_id = last_update['update_id']
         last_chat_text = last_update['message']['text']
         last_chat_id = last_update['message']['chat']['id']
         last_chat_name = last_update['message']['chat']['first_name']
+        # Type /s
+        if (last_chat_text.lower()[0:3] in show_text):
+            topic = last_chat_text.lower()[3:]
+            records = self.get_records_by_topic(topic)
+            for message in records:
+                self.greet_bot.send_message(last_chat_id, message)
         # Type /t
         if (last_chat_text.lower()[0:3] in topic_text):
             topic = last_chat_text.lower()[3:last_chat_text.lower().find('/r ')]
