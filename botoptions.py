@@ -139,7 +139,7 @@ class BotOptions:
         last_chat_name = last_update['message']['chat']['first_name']
         # Type /s
         if (last_chat_text.lower()[0:3] in show_text):
-            topic = last_chat_text.lower()[3:]
+            topic = last_chat_text.lower()[3:]+'\n'
             records = self.get_records_by_topic(topic)
             for message in records:
                 self.greet_bot.send_message(last_chat_id, message)
