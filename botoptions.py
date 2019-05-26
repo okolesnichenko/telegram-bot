@@ -151,6 +151,7 @@ class BotOptions:
         if (last_chat_text.lower()[0:3] in show_text):
             topic = last_chat_text.lower()[3:]
             records = self.get_records_by_topic(topic)
+            records = set(records)
             for message in records:
                 self.greet_bot.send_message(last_chat_id, message)
         # Type /t
