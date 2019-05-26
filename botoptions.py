@@ -155,7 +155,7 @@ class BotOptions:
                 self.greet_bot.send_message(last_chat_id, message)
         # Type /t
         if (last_chat_text.lower()[0:3] in topic_text):
-            topic = last_chat_text.lower()[3:last_chat_text.lower().find('/r ')].replace('/n', '')
+            topic = last_chat_text.lower()[3:last_chat_text.lower().find('/r ')].replace('\n', '')
             message = last_chat_text.lower()[last_chat_text.lower().find('/r ')+3:]
             if message != '' and message is not None:
                 self.save_record(topic, message)
