@@ -9,6 +9,7 @@ time_text = ("сколько время", "время", "дата", "date", "tim
 reg_text = ("регистрация", "зарегестрироваться", "рег", "registration")
 userdata = {'username': '', 'name': '', 'sex': '', 'photo': '', 'description':''}
 users_list = [{}]
+topic =''
 
 ''' 
 1) i can create list of userdata
@@ -125,7 +126,7 @@ class BotOptions:
             self.game(last_update, like=True)
         print(data)
 
-    def save_topic(self, topic, last_chat_text):
+    def save_record(self, topic, last_chat_text):
         self.database.add_record(topic, last_chat_text)
 
     def say_something(self, last_update):
