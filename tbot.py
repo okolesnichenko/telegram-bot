@@ -49,7 +49,7 @@ def main():
             if (last_update.get('message')):
                 if(last_update.get('message').get('text')):
                     # If message type is text ->
-                    bot.say_something(last_update, time)
+                    bot.say_something(last_update)
                 elif (last_update.get('message').get('photo')):
                     # If message type is photo (file) ->
                     data = bot.get_photo_and_data(last_update)
