@@ -136,7 +136,7 @@ class BotOptions:
 
         # Type /t
         if last_chat_text.lower()[0:3] in topic_text:
-            topic = last_chat_text.lower[3:]
+            topic = last_chat_text.lower()[3:]
         # Type /r
         if (last_chat_text.lower()[0:3] in record_text) and topic is not None:
             self.save_record(topic)
