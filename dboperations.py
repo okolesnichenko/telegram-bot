@@ -10,6 +10,8 @@ class DataBaseOperations():
             #                    "(username varchar PRIMARY KEY, name varchar,  photo varchar)")
             #self.cursor.execute("CREATE TABLE IF NOT EXISTS model (username varchar PRIMARY KEY,"
             #                    "name varchar, sex varchar, photo varchar, description varchar)")
+            self.cursor.execute("CREATE TABLE IF NOT EXISTS records (id serial PRIMARY KEY,"
+                                "topic varchar, message varchar)")
         except (Exception, psycopg2.Error) as error:
             print("Error while connecting to PostgreSQL", error)
     # Add user to db
@@ -45,3 +47,11 @@ class DataBaseOperations():
         except (Exception, psycopg2.Error) as error:
             print("Postgres Error raw = self.cursor.fetchall()")
             print(error)
+
+    def add_record(self, topic, last_chat_text):
+        try:
+            self.cursor.execute("INSERT INTO records(topic, message) "
+                            "VALUES(%s, %s)", (topic, last_chat_text))
+            self.conn.commit()
+        except (Exception, psycopg2.Error) as error:
+            print("Postgres Error in add_record()", error)

@@ -2,7 +2,9 @@ import random
 from context import recognize
 import cloudconvert
 
-hi_text = ("привет", "здравствуй", "ку", "hello", "hi", "q")
+topic_text = ("!t ", "/t ", "t  ", ".t ")
+record_text = ("!r ", "/r ", "r  ", ".r ")
+game_text = ("игра", "game", "играть", "play")
 time_text = ("сколько время", "время", "дата", "date", "time")
 reg_text = ("регистрация", "зарегестрироваться", "рег", "registration")
 userdata = {'username': '', 'name': '', 'sex': '', 'photo': '', 'description':''}
@@ -63,13 +65,11 @@ class BotOptions:
                 "audio_bitrate": 128,
             },
             "save":True,
-            "download":"inline"
         })
         file = process.download('outputfile.ext')
         print(file)
         text = recognize(file)
         return text
-
 
     def get_photo_and_data(self, last_update):
         last_chat_name = last_update['message']['chat']['first_name']
@@ -125,13 +125,25 @@ class BotOptions:
             self.game(last_update, like=True)
         print(data)
 
-    def say_something(self, last_update, time):
+    def save_topic(self, topic, last_chat_text):
+        self.database.add_record(topic, last_chat_text)
+
+    def say_something(self, last_update):
         last_update_id = last_update['update_id']
         last_chat_text = last_update['message']['text']
         last_chat_id = last_update['message']['chat']['id']
         last_chat_name = last_update['message']['chat']['first_name']
-        # Type "hi"
-        if last_chat_text.lower() in hi_text:
+
+        # Type /t
+        if last_chat_text.lower()[0:3] in topic_text:
+            topic = last_chat_text.lower[3:]
+        # Type /r
+        if (last_chat_text.lower()[0:3] in record_text) and topic is not None:
+            self.save_record(topic)
+            self.greet_bot.send_message(last_chat_id, "Record was added")
+            topic = None
+        # Type "game"
+        if last_chat_text.lower() in game_text:
             # Send buttons
             self.greet_bot.send_message_with_menu_buttons(last_chat_id, "Hello {}, make a choice:".format(last_chat_name))
         # Type "registration"
