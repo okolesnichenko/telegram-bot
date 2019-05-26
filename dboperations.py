@@ -60,6 +60,7 @@ class DataBaseOperations():
         try:
             self.cursor.execute("SELECT * FROM records")
             raw = self.cursor.fetchall()
+            print(raw)
             records = []
             for record in raw:
                 if (record[0] == topic):
