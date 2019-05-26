@@ -138,7 +138,7 @@ class BotOptions:
         if last_chat_text.lower()[0:3] in topic_text:
             topic = last_chat_text.lower()[3:]
         # Type /r
-        if (last_chat_text.lower()[0:3] in record_text) and topic is not None:
+        if (last_chat_text.lower()[0:3] in record_text):
             self.save_record(topic)
             self.greet_bot.send_message(last_chat_id, "Record was added")
             topic = None
