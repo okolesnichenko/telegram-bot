@@ -60,12 +60,23 @@ class DataBaseOperations():
         try:
             self.cursor.execute("SELECT * FROM records")
             raw = self.cursor.fetchall()
-            print(raw)
             records = []
             for record in raw:
                 if (record[1] == topic):
                     records.append(record[2])
             return records
+        except (Exception, psycopg2.Error) as error:
+            print("Postgres Error raw = self.cursor.fetchall()")
+            return None
+
+    def get_topics(self):
+        try:
+            self.cursor.execute("SELECT * FROM records")
+            raw = self.cursor.fetchall()
+            topics = []
+            for record in raw:
+                topics.append(record[1])
+            return topics
         except (Exception, psycopg2.Error) as error:
             print("Postgres Error raw = self.cursor.fetchall()")
             return None

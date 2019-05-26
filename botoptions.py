@@ -2,6 +2,7 @@ import random
 from context import recognize
 import cloudconvert
 
+show_topics = ("/a")
 show_text = ("/s ", "!s ")
 topic_text = ("!t ", "/t ", "t  ", ".t ")
 game_text = ("игра", "game", "играть", "play")
@@ -132,11 +133,20 @@ class BotOptions:
         records = self.database.get_records(topic)
         return records
 
+    def get_topics(self):
+        topics = self.database.get_topics()
+        return topics
+
     def say_something(self, last_update):
         last_update_id = last_update['update_id']
         last_chat_text = last_update['message']['text']
         last_chat_id = last_update['message']['chat']['id']
         last_chat_name = last_update['message']['chat']['first_name']
+        # Type /a
+        if (last_chat_text.lower()[0:2] in show_topics):
+            records = self.get_topics()
+            for message in records:
+                self.greet_bot.send_message(last_chat_id, message)
         # Type /s
         if (last_chat_text.lower()[0:3] in show_text):
             topic = last_chat_text.lower()[3:]
