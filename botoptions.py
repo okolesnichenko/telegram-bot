@@ -45,7 +45,7 @@ class BotOptions:
             if (not (user[2] == sex)) and (not(user[0] == last_chat_username)):
                 self.greet_bot.send_user_photo(last_chat_id, user[3], user[4], user[1])
         else:
-            self.greet_bot.send_message(last_chat_id)
+            self.greet_bot.send_message(last_chat_id, "Next photo")
 
         return data
 
