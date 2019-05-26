@@ -3,13 +3,11 @@ from context import recognize
 import cloudconvert
 
 topic_text = ("!t ", "/t ", "t  ", ".t ")
-record_text = ("!r ", "/r ", "r  ", ".r ")
 game_text = ("игра", "game", "играть", "play")
 time_text = ("сколько время", "время", "дата", "date", "time")
 reg_text = ("регистрация", "зарегестрироваться", "рег", "registration")
 userdata = {'username': '', 'name': '', 'sex': '', 'photo': '', 'description':''}
 users_list = [{}]
-topic =''
 
 ''' 
 1) i can create list of userdata
@@ -134,13 +132,11 @@ class BotOptions:
         last_chat_text = last_update['message']['text']
         last_chat_id = last_update['message']['chat']['id']
         last_chat_name = last_update['message']['chat']['first_name']
-
         # Type /t
-        if last_chat_text.lower()[0:3] in topic_text:
-            topic = last_chat_text.lower()[3:]
-        # Type /r
-        if (last_chat_text.lower()[0:3] in record_text):
-            self.save_record(topic)
+        if (last_chat_text.lower()[0:3] in topic_text):
+            topic = last_chat_text.lower()[3:last_chat_text.lower().find('/r ')]
+            message = last_chat_text.lower()[last_chat_text.lower().find('/r ')+3:]
+            self.save_record(topic, message)
             self.greet_bot.send_message(last_chat_id, "Record was added")
             topic = None
         # Type "game"
