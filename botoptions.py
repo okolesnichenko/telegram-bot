@@ -147,9 +147,11 @@ class BotOptions:
         if (last_chat_text.lower()[0:3] in topic_text):
             topic = last_chat_text.lower()[3:last_chat_text.lower().find('/r ')].replace('/n', '')
             message = last_chat_text.lower()[last_chat_text.lower().find('/r ')+3:]
-            self.save_record(topic, message)
-            self.greet_bot.send_message(last_chat_id, "Record was added")
+            if message != '' and message is not None:
+                self.save_record(topic, message)
+                self.greet_bot.send_message(last_chat_id, "Record was added")
             topic = None
+            message = None
         # Type "game"
         if last_chat_text.lower() in game_text:
             # Send buttons
